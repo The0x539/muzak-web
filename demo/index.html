@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script type="module">
+    import { play } from "./index.js";
+    window.play = play;
+  </script>
+
+  <style>
+    body {
+      display: flex;
+      height: 100vh;
+      flex-direction: column;
+      gap: 1em;
+      justify-content: center;
+      align-items: center;
+    }
+
+    textarea {
+      min-height: 300px;
+      min-width: 800px;
+    }
+  </style>
+</head>
+
+<body>
+  <textarea id="score"></textarea>
+  <button onclick="play(score.value)">Play!</button>
+</body>
+
+</html>

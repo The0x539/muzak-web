@@ -1,0 +1,16 @@
+[package]
+name = "muzak-web"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+wasm-bindgen = "0.2.84"
+muzak = { git = "https://github.com/the0x539/muzak", version = "2.1.1", default-features = false }
+# Not a direct dependency; just need to poke the feature flag.
+getrandom = { version = "*", features = ["wasm_js"] }
+
+[profile.release]
+opt-level = "s"
