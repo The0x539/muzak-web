@@ -33,3 +33,11 @@ export async function play(score_text) {
   source.connect(ctx.destination);
   source.start();
 }
+
+// very simple hot reload
+if (location.hostname === "localhost") {
+  const socket = new WebSocket("ws://localhost:8001");
+  socket.addEventListener("close", () => {
+    location.reload();
+  });
+}

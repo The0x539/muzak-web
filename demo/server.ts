@@ -14,7 +14,10 @@ Deno.serve(async (req) => {
   const url = new URL(req.url);
   const route = url.pathname;
   if (route === "/") {
-    return new Response(null, { status: 308, headers: { "Location": "demo/index.html" }});
+    return new Response(null, {
+      status: 308,
+      headers: { "Location": "demo/index.html" },
+    });
   }
 
   const filepath = path.join(Deno.cwd(), route);
@@ -22,14 +25,34 @@ Deno.serve(async (req) => {
     return new Response("nope", { status: 404 });
   }
 
-  const filetype = filetypes.get(path.extname(route)) ?? "application/octet-stream";
-  
+  const filetype = filetypes.get(path.extname(route));
+
   const file = await Deno.open(filepath);
   return new Response(file.readable, {
     status: 200,
     headers: {
-      "Content-Type": filetype,
-    }
+      "Content-Type": filetype ?? "application/octet-stream",
+    },
   });
 });
 
+// When accessed via localhost, the page's JS opens a WebSocket connection,
+// and when that connection is closed, it triggers a page refresh for live reloading.
+// When the server code is updated, Deno restarts the server, automatically closing the sockets.
+const activeSockets: WebSocket[] = [];
+
+Deno.serve({ port: 8001 }, (req) => {
+  const { socket, response } = Deno.upgradeWebSocket(req);
+
+  activeSockets.push(socket);
+
+  return response;
+});
+
+// When the actual page content is updated, manually drain the sockets out of the list,
+// and manually close each one.
+for await (const _ of Deno.watchFs("./demo/", { recursive: true })) {
+  for (const socket of activeSockets.splice(0)) {
+    socket.close();
+  }
+}
