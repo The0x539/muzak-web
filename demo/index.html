@@ -3,9 +3,7 @@
 
 <head>
   <meta charset="utf-8" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cascadia+Code:ital,wght@0,200..700;1,200..700&display=swap">
+
   <link rel="stylesheet" href="./screen.css" />
 
   <title>Mystifying the Bells</title>
@@ -13,6 +11,9 @@
   <script type="module">
     import { play } from "./index.js";
     window.play = play;
+    if (score.value === score.defaultValue) {
+      score.value = score.value.replaceAll(/^ +/gm, '').trim();
+    }
   </script>
 </head>
 
@@ -30,9 +31,45 @@
   </header>
 
   <main>
-    <textarea id="score" cols="80" spellcheck="false"></textarea>
-    <button onclick="play(score.value)">Play!</button>
+    <p>
+      there will be documentation here in the future.
+      for now, you can play the bells:
+    </p>
+
+    <textarea id="score" rows="21" cols="60" spellcheck="false">
+      60
+      / C F G
+      A// G A G A B♭
+      / c/ d A / A c♯
+      d/ e/ d/ A G
+      F E F A d/ D E
+      F/// c B♭ B♭ A
+      F/// d A A G
+      F///// E D
+      E// F G~ / /
+      |
+      ////
+      F2 C3 A3 C3 F2 C3 A3 C3
+      A2 G3 C G3 A2 G3 C♯ G3
+      D3 F3 D F3 C♯3 F3 C♯ F3
+      C3 F3 C F3 B2 F3 B3 F3
+      B♭2 F3 B♭3 F3 B♭2 F3 B♭3 F3
+      G2 F3 B♭3 F3 G2 F3 B♭3 F3
+      C3 G3 B♭3 G3 C3 G3 B♭3 G3
+      C3 E3 B♭3 E3 C / / /
+    </textarea>
+    <button onclick="play(score.value)">play!</button>
   </main>
+
+  <footer>
+    source code:
+    <ul>
+      <li><a href="https://github.com/the0x539/muzak">muzak-rs</a></li>
+      <li><a href="https://github.com/the0x539/muzak-web">muzak-web</a></li>
+      <li><a href="https://codeberg.org/bezelea/muzak/src/branch/main/muzak.el">muzak.el (Bezelea Forme)</a></li>
+      <li><a href="https://github.com/lcolonq/wasp/blob/master/src/contrib/bezelea-muzak.el">muzak.el (LCOLONQ Forme)</a></li>
+    </ul>
+  </footer>
 </body>
 
 </html>
