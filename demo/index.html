@@ -3,13 +3,17 @@
 
 <head>
   <meta charset="utf-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cascadia+Code:ital,wght@0,200..700;1,200..700&display=swap">
+  <link rel="stylesheet" href="./screen.css" />
+
+  <title>Mystifying the Bells</title>
 
   <script type="module">
     import { play } from "./index.js";
     window.play = play;
   </script>
-
-  <link rel="stylesheet" href="./screen.css" />
 </head>
 
 <body>
@@ -25,8 +29,10 @@
     >↝</a>
   </header>
 
-  <textarea id="score"></textarea>
-  <button onclick="play(score.value)">Play!</button>
+  <main>
+    <textarea id="score" cols="80" spellcheck="false"></textarea>
+    <button onclick="play(score.value)">Play!</button>
+  </main>
 </body>
 
 </html>
