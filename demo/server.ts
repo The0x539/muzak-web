@@ -7,6 +7,7 @@ const filetypes = new Map([
   [".html", "text/html"],
   [".js", "text/javascript"],
   [".wasm", "application/wasm"],
+  [".css", "text/css"],
 ]);
 
 Deno.serve(async (req) => {
