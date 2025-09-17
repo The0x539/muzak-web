@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+host=the0x539@pub.colonq.computer
+
+scp index.html $host:public_html/bells.html
+scp index.js screen.css worker.js $host:public_html/
+scp pkg/muzak_web.js pkg/muzak_web_bg.wasm $host:public_html/pkg/

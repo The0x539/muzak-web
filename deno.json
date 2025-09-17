@@ -2,5 +2,6 @@
   "tasks": {
     "build": "wasm-pack build --target web",
     "run": "deno run --allow-read --allow-net server.ts",
+    "deploy": "./deploy",
   }
 }
