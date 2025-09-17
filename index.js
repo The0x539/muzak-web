@@ -2,10 +2,19 @@ import { render_score, default as init } from "./pkg/muzak_web.js";
 
 await init();
 
+let worker;
 function renderAsync(score, volume) {
-  const worker = new Worker("./worker.js", { type: "module" });
+  worker ??= new Worker("./worker.js", { type: "module" });
   return new Promise(resolve => {
-    worker.onmessage = message => resolve(message.data);
+    const listener = message => {
+      // make sure we're not getting the result of a past dispatch
+      if (message.data.score === score) {
+        // stop listening for the results of future dispatches
+        worker.removeEventListener("message", listener);
+        resolve(message.data.samples);
+      }
+    };
+    worker.addEventListener("message", listener);
     worker.postMessage({ score, volume });
   });
 }
@@ -20,19 +29,22 @@ function render(score, volume = 0.2) {
 
 let ctx;
 let source;
-
-export async function play(score_text) {
+function makeBufferSource() {
   ctx ??= new AudioContext();
   source?.disconnect();
   source = ctx.createBufferSource();
+  source.connect(ctx.destination);
+  return source;
+}
 
+export async function play(score_text) {
+  const source = await makeBufferSource();
   const samples = await render(score_text);
 
   const buffer = ctx.createBuffer(1, samples.length, 48000);
   buffer.copyToChannel(samples, 0);
 
   source.buffer = buffer;
-  source.connect(ctx.destination);
   source.start();
 }
 

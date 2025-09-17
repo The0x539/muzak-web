@@ -5,5 +5,6 @@ addEventListener('message', async message => {
 
   const { score, volume } = message.data;
   const samples = render_score(score, volume);
-  postMessage(samples);
+  const data = { samples, score }
+  postMessage(data);
 });
