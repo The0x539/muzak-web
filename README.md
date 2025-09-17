@@ -1,2 +1,3 @@
-- `wasm-pack build --target web`
-- `deno run --watch -RN server.ts`
+- `deno task build`
+- `deno task run`
+- http://localhost:8000
