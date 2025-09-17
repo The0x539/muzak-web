@@ -19,12 +19,14 @@ function render(score, volume = 0.2) {
 }
 
 let ctx;
+let source;
+
 export async function play(score_text) {
   ctx ??= new AudioContext();
+  source?.disconnect();
+  source = ctx.createBufferSource();
 
   const samples = await render(score_text);
-
-  const source = ctx.createBufferSource();
 
   const buffer = ctx.createBuffer(1, samples.length, 48000);
   buffer.copyToChannel(samples, 0);
