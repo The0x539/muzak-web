@@ -49,7 +49,7 @@ export async function play(score_text) {
 }
 
 // very simple hot reload
-if (location.hostname === "localhost") {
+if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
   const socket = new WebSocket("ws://localhost:8001");
   socket.addEventListener("close", () => {
     location.reload();
