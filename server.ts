@@ -12,12 +12,10 @@ const filetypes = new Map([
 
 Deno.serve(async (req) => {
   const url = new URL(req.url);
-  const route = url.pathname;
+  let route = url.pathname;
+
   if (route === "/") {
-    return new Response(null, {
-      status: 308,
-      headers: { "Location": "demo/index.html" },
-    });
+    route = "/index.html";
   }
 
   const filepath = path.join(Deno.cwd(), route);
@@ -51,7 +49,7 @@ Deno.serve({ port: 8001 }, (req) => {
 
 // When the actual page content is updated, manually drain the sockets out of the list,
 // and manually close each one.
-for await (const _ of Deno.watchFs("./demo/", { recursive: true })) {
+for await (const _ of Deno.watchFs(".", { recursive: true })) {
   for (const socket of activeSockets.splice(0)) {
     socket.close();
   }

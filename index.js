@@ -1,4 +1,4 @@
-import { render_score, default as init } from "../pkg/muzak_web.js";
+import { render_score, default as init } from "./pkg/muzak_web.js";
 
 await init();
 

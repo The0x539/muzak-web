@@ -1,3 +1,3 @@
 - `export RUSTFLAGS='--cfg getrandom_backend="wasm_js"'`
 - `wasm-pack build --target web`
-- `deno run --watch -RN demo/server.ts`
+- `deno run --watch -RN server.ts`
