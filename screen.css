@@ -80,3 +80,15 @@ footer {
     }
   }
 }
+
+[role="toolbar"] {
+  width: 100%;
+  max-width: 570px;
+
+  display: flex;
+  gap: 1em;
+
+  input[type="range"] {
+    margin-inline-start: auto;
+  }
+}

@@ -27,25 +27,55 @@ function render(score, volume = 0.2) {
   }
 }
 
-let ctx;
-let source;
-function makeBufferSource() {
-  ctx ??= new AudioContext();
-  source?.disconnect();
-  source = ctx.createBufferSource();
-  source.connect(ctx.destination);
-  return source;
+const volumeControl = document.getElementById('volume');
+//volumeControl.valueAsNumber = 1.0;
+
+class Player {
+  static audioCtx;
+  static current;
+
+  constructor() {
+    this.ctx = Player.audioCtx ??= new AudioContext();
+
+    this.source = this.ctx.createBufferSource();
+    this.gain = this.ctx.createGain();
+    this.sink = this.ctx.destination;
+
+    this.setGain(volumeControl.valueAsNumber);
+
+    this.source.connect(this.gain)
+    this.gain.connect(this.sink);
+  }
+
+  play(samples) {
+    const buffer = this.ctx.createBuffer(1, samples.length, 48000);
+    buffer.copyToChannel(samples, 0);
+    this.source.buffer = buffer;
+    this.source.start();
+  }
+
+  setGain(gain) {
+    this.gain.gain.value = gain;
+  }
+
+  stop() {
+    this.source.disconnect();
+  }
+}
+
+export function stop() {
+  Player.current?.stop();
 }
 
 export async function play(score_text) {
-  const source = await makeBufferSource();
+  stop();
   const samples = await render(score_text);
+  Player.current = new Player();
+  Player.current.play(samples);
+}
 
-  const buffer = ctx.createBuffer(1, samples.length, 48000);
-  buffer.copyToChannel(samples, 0);
-
-  source.buffer = buffer;
-  source.start();
+export function setVolume(volume) {
+  Player.current?.setGain(volume);
 }
 
 // very simple hot reload
@@ -55,3 +85,4 @@ if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
     location.reload();
   });
 }
+

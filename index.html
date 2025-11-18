@@ -9,9 +9,12 @@
   <title>Mystifying the Bells</title>
 
   <script type="module">
-    import { play } from "./index.js";
-    window.play = play;
+    import * as stuff from "./index.js";
+    Object.assign(window, stuff);
+
     if (score.value === score.defaultValue) {
+      // remove leading whitespace from the score,
+      // so that it can look nice in this source file
       score.value = score.value.replaceAll(/^ +/gm, '').trim();
     }
   </script>
@@ -58,7 +61,11 @@
       C3 G3 B♭3 G3 C3 G3 B♭3 G3
       C3 E3 B♭3 E3 C / / /
     </textarea>
-    <button onclick="play(score.value)">play!</button>
+    <div role="toolbar">
+      <button onclick="play(score.value)">▶ play</button>
+      <button onclick="stop()">■ stop</button>
+      <input id="volume" type="range" min="0" max="1" step="any" oninput="setVolume(this.valueAsNumber)" />
+    </div>
   </main>
 
   <footer>
