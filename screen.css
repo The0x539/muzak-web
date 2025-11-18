@@ -44,7 +44,8 @@ header {
   background-color: Field;
 
   h1 {
-    font-size: 3rem;
+    font-size: calc(min(3rem, 4vw));
+    text-wrap: nowrap;
     margin: 0;
   }
 
@@ -66,11 +67,17 @@ footer {
 
   ul {
     display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
     padding: 0;
     margin: 0;
 
     li {
       list-style: none;
+
+      a {
+        text-wrap: nowrap;
+      }
 
       &:not(:last-child)::after {
         display: inline;
@@ -89,6 +96,7 @@ footer {
   gap: 1em;
 
   input[type="range"] {
+    width: min(100%, 200px);
     margin-inline-start: auto;
   }
 }
