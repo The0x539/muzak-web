@@ -105,8 +105,13 @@
           <h4>Semitones</h4>
           <p>
             A <mark>♯</mark> or <mark>#</mark> symbol after a note makes a <em>sharp</em>.
-            A <mark>♭</mark> makes a <em>flat</em>.
-            (The original Emacs Lisp implementation only supported the ASCII <mark>#</mark>. There was no syntax for flats.)
+            A <mark>♭</mark> symbol makes a <em>flat</em>.
+          </p>
+          <p>
+            You can also use <mark>♮</mark> for an explicit <em>natural</em>, if you want to for some reason.
+          </p>
+          <p>
+            (The original Emacs Lisp implementation only supported the ASCII <mark>#</mark>.)
           </p>
           <code>
             125
@@ -138,7 +143,7 @@
         </section>
 
         <section>
-          <h4>chords</h4>
+          <h4>Chords</h4>
           <p>
             Multiple notes inside a pair of <mark>[]</mark> will play together.
             All notes in a chord will use the duration of the longest member note.
@@ -152,6 +157,78 @@
           </code>
         </section>
       </section>
+
+      <section>
+        <h3>Advanced Notation</h3>
+
+        <section>
+          <h4>Parts (<i>a.k.a.</i> Tracks)</h4>
+          <p>
+            The <mark>|</mark> symbol will split a score into multiple <em>parts</em> that all play together.
+            Parts share a common tempo, but are otherwise independent.
+          </p>
+          <code>
+            37
+            A2C#3A3B3C#B3A3E3 D3F#3C#EC#A3~~
+            A2C#3A3B3C#B3A3E3 D3F#3C#EC#A3
+            |
+            G#~~~~~ A~F#~~~~~
+            EF#G#~~~~~
+            B c#~ F#~~~
+          </code>
+        </section>
+
+        <section>
+          <h4>Dynamics</h4>
+          <p>
+            A valid combination of the <mark>𝓹</mark>, <mark>𝓶</mark> <mark>𝓯</mark> symbols between notes
+            changes that part's <a href="https://en.wikipedia.org/wiki/Musical_Symbols_(Unicode_block)">dynamic</a> from that point onward.
+            The valid range is from <em>pianissimo</em> (<mark>𝓹𝓹</mark>) to <em>fortissimo</em> (<mark>𝓯𝓯</mark>).
+            The default is <em>mezzo forte</em> (<mark>𝓶𝓯</mark>), and each step has a gain ratio of √2 (subject to change if someone has a better idea).
+          </p>
+          <code>
+            90
+            𝓯 C3 D#3 G3 C D# G~~~~~~~~~~
+            𝓹𝓹 [C3C~] [D#3D#~] [C3C~] [G3G~] [D#3D#~~~] G3~ C~
+            𝓯 [A#2C] D3~~ D G~~~~~~~~~~
+            [D3D~~~~~~~~~~~] 𝓹𝓹 [G3G] [D3D] [A#2A#3] [D3D]
+            𝓯 A2 C#3~~ E3 E~~~~~~~~~~
+            𝓹𝓹 [D#3D#~~~~~~~] 𝓶𝓹 [C#3C#~] [D#3D#] [C#3C#~~] [D#3D#] [C#3C#]
+            𝓯 G2 A#2 D3 G3 A#3 D~~~~ 𝓹𝓹 [D3D~] [A#2A#3~] [G2G3~]
+            𝓯 [G2G3] [A#2A#3] [D3D~~~] [G3G] [A#3A#~~] [Dd~~~~~]
+          </code>
+        </section>
+
+        <section>
+          <h4>Long Rests</h4>
+          <p>
+            A <mark>🛏️</mark> symbol followed by a number is equivalent to that many <mark>/</mark> symbols.
+            This is useful for parts that only participate in certain sections of the score,
+            as a compact way of writing the extended lack of activity.
+          </p>
+          <code>A 🛏️32 B</code>
+        </section>
+      </section>
+
+      <section>
+        <h3>Instruments (TODO)</h3>
+        <p>
+          An instrument symbol at the start of a part will set that part's instrument.
+          By default, the first track will use "beep", and all others will use "keys".
+        </p>
+        <p>
+          The "bells" and "waterphone" instruments were present in Bezelea's original Emacs Lisp implementation,
+          but as far as I know, there was no way to actually access them for use on the stream.
+
+          The snare drum is a new addition, and is unpitched.
+        </p>
+        <ul>
+          <li><mark>∿</mark>: Beep</li>
+          <li><mark>🎹</mark>: Keys</li>
+          <li><mark>🔔</mark>: Bells</li>
+          <li><mark>🌊</mark>: Waterphone</li>
+          <li><mark>🥁</mark>: Snare</li>
+        </ul>
     </section>
   </main>
 

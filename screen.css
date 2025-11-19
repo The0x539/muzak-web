@@ -58,6 +58,7 @@ section:has(> h3:first-child) {
   border: 1px solid ButtonBorder;
   position: relative;
   padding: 1.5em;
+  margin-block: 2em;
 
   h3 {
     font-size: 1.5rem;
