@@ -39,6 +39,7 @@ h2 {
 }
 
 mark {
+  cursor: pointer;
   text-transform: none;
   background: none;
   color: inherit;
@@ -48,6 +49,22 @@ mark {
     0 0 4px var(--glow),
     0 0 8px var(--glow),
     0 0 16px var(--glow);
+}
+
+.copy-anim {
+  text-transform: none;
+  pointer-events: none;
+  position: absolute;
+
+  animation: 1s ease-out 1 copy-anim;
+}
+
+@keyframes copy-anim {
+  to {
+    translate: 0 -50px;
+    scale: 3;
+    opacity: 0;
+  }
 }
 
 section:has(> h2:first-child) {
@@ -174,5 +191,9 @@ footer {
   input[type="range"] {
     width: min(100%, 200px);
     margin-inline-start: auto;
+  }
+
+  &.palette {
+    width: min-content;
   }
 }

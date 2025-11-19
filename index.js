@@ -27,7 +27,9 @@ function render(score, volume = 0.2) {
   }
 }
 
-for (const code of [...document.getElementsByTagName('code')]) {
+const getElements = tag => [...document.getElementsByTagName(tag)];
+
+for (const code of getElements('code')) {
   const input = document.createElement('input');
   input.value = code.innerText;
   code.after(input);
@@ -38,6 +40,35 @@ for (const code of [...document.getElementsByTagName('code')]) {
   input.before(button);
 
   button.addEventListener('click', () => play(input.value));
+}
+
+function copyText(event) {
+  navigator.clipboard.writeText(event.target.innerText);
+  event.preventDefault();
+
+  const bubble = document.createElement('span');
+  bubble.ariaHidden = "true";
+  bubble.innerText = event.target.innerText;
+  bubble.classList.add('copy-anim');
+
+  const rect = event.target.getClientRects()[0];
+  bubble.style.left = rect.x + window.scrollX + 'px';
+  bubble.style.top = rect.y + window.scrollY + 'px';
+
+  document.body.appendChild(bubble);
+  setTimeout(() => bubble.remove(), 1000);
+}
+
+function preventAccidentalSelect(event) {
+  if (event.detail > 1) {
+    window.getSelection().removeAllRanges();
+    event.preventDefault();
+  }
+}
+
+for (const mark of getElements('mark')) {
+  mark.addEventListener('click', copyText);
+  mark.addEventListener('mousedown', preventAccidentalSelect);
 }
 
 const volumeControl = document.getElementById('volume');
