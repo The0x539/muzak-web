@@ -36,8 +36,7 @@
 
   <main>
     <p>
-      there will be documentation here in the future.
-      for now, you can play the bells:
+      there will be (more) documentation here in the future.
     </p>
 
     <textarea id="score" rows="21" cols="60" spellcheck="false">
@@ -67,6 +66,93 @@
       <button onclick="stop()">■ stop</button>
       <input id="volume" type="range" min="0" max="1" step="any" oninput="setVolume(this.valueAsNumber)" />
     </div>
+
+    <section>
+      <h2>Usage</h2>
+
+      <section>
+        <h3>Basics</h3>
+
+        <section>
+          <h4>Notes</h4>
+          <p>
+            Each letter up to <mark>G</mark> is a note.
+            Uppercase for octave 4, lowercase for octave 5.
+            Whitespace is generally ignored.
+          </p>
+          <code>CDEFGAB cdefgab</code>
+        </section>
+
+        <section>
+          <h4>Tempo</h4>
+          <p>
+            A number at the very start of the score specifies the <abbr title="beats per minutes">BPM</abbr> of the entire score.
+            The default is 75 BPM, and the basic unit is a quarter-beat.
+          </p>
+          <code>60 CCCC DDDD EEEE FFFF</code>
+        </section>
+
+        <section>
+          <h4>Octaves</h4>
+          <p>
+            A number after a note specifies the octave.
+            If octave is specified, then uppercase/lowercase is ignored.
+          </p>
+          <code>c2 c3 c4 c5 c6</code>
+        </section>
+
+        <section>
+          <h4>Semitones</h4>
+          <p>
+            A <mark>♯</mark> or <mark>#</mark> symbol after a note makes a <em>sharp</em>.
+            A <mark>♭</mark> makes a <em>flat</em>.
+            (The original Emacs Lisp implementation only supported the ASCII <mark>#</mark>. There was no syntax for flats.)
+          </p>
+          <code>
+            125
+            gBeBgBeBgBeBgBeB
+            gc♯ec♯gc♯ec♯gc♯ec♯gc♯ec♯
+            c6eaec6eaec6eaec6eae
+            adf♯dadf♯dadf♯dadf♯d
+          </code>
+        </section>
+
+        <section>
+          <h4>Longer Notes</h4>
+          <p>
+            Adding <mark>~</mark> symbols to a note will extend it by one time unit.
+          </p>
+          <code>160 E~ F#~ G~ A~ F#~~~ D~ E~~~</code>
+        </section>
+
+        <section>
+          <h4>Rests</h4>
+          <p>
+            A <mark>/</mark> plays no sound for one time unit.
+          </p>
+          <code>
+            150
+            d#~/ f~/ A#~/ c~/ G#~ F~
+            c#~/ G#~ / d#~ / G#~ / G~ D#~
+          </code>
+        </section>
+
+        <section>
+          <h4>chords</h4>
+          <p>
+            Multiple notes inside a pair of <mark>[]</mark> will play together.
+            All notes in a chord will use the duration of the longest member note.
+          </p>
+          <code>
+            69
+            [G#d#g#~~] c#~~ d#~
+            [D#B~~~~~] E~
+            [C#c#~~] f#~~ G#~
+            [B3B~] c#~ [A#3d#~~~]
+          </code>
+        </section>
+      </section>
+    </section>
   </main>
 
   <footer>

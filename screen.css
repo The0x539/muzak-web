@@ -4,9 +4,14 @@
   box-sizing: border-box;
   font-size: 1em;
   font-family: inherit;
+  text-transform: lowercase;
 }
 
-html {
+input, textarea, a, code, abbr {
+  text-transform: none;
+}
+
+:root {
   font-family: "Cascadia Code";
   font-size: 16px;
   color-scheme: light dark;
@@ -27,6 +32,76 @@ main {
   gap: 1em;
   justify-content: center;
   align-items: center;
+}
+
+h2 {
+  font-size: 2.5rem;
+}
+
+mark {
+  text-transform: none;
+  background: none;
+  color: inherit;
+  --glow: orchid;
+  text-shadow:
+    0 0 2px var(--glow),
+    0 0 4px var(--glow),
+    0 0 8px var(--glow),
+    0 0 16px var(--glow);
+}
+
+section:has(> h2:first-child) {
+  max-width: 900px;
+}
+
+section:has(> h3:first-child) {
+  border: 1px solid ButtonBorder;
+  position: relative;
+  padding: 1.5em;
+
+  h3 {
+    font-size: 1.5rem;
+    position: absolute;
+    top: -0.5em;
+    margin: 0;
+    padding: 0.25em;
+    border: inherit;
+    background: Canvas;
+  }
+}
+
+section:has(> h4:first-child) {
+  margin-block-start: 1.5em;
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: middle;
+  row-gap: 0.5em;
+  
+  h4 {
+    width: 100%;
+    font-size: 1.25rem;
+    margin: 0;
+  }
+
+  p {
+    margin: 0;
+    margin-inline-start: 2em;
+    width: 100%;
+  }
+
+  button {
+    height: 2em;
+    margin-inline: 2em 1em;
+    vertical-align: middle;
+  }
+
+  input {
+    height: 2em;
+    width: auto;
+    vertical-align: middle;
+    flex-grow: 1;
+  }
 }
 
 textarea {

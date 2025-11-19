@@ -27,6 +27,19 @@ function render(score, volume = 0.2) {
   }
 }
 
+for (const code of [...document.getElementsByTagName('code')]) {
+  const input = document.createElement('input');
+  input.value = code.innerText;
+  code.after(input);
+  code.remove();
+
+  const button = document.createElement('button');
+  button.innerText = '▶ play';
+  input.before(button);
+
+  button.addEventListener('click', () => play(input.value));
+}
+
 const volumeControl = document.getElementById('volume');
 //volumeControl.valueAsNumber = 1.0;
 
