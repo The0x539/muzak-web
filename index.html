@@ -134,6 +134,7 @@
           <p>
             (The original Emacs Lisp implementation only supported the ASCII <mark>#</mark>.)
           </p>
+          <!-- Aerodynamic -->
           <code>
             125
             gBeBgBeBgBeBgBeB
@@ -148,6 +149,7 @@
           <p>
             Adding <mark>~</mark> symbols to a note will extend it by one time unit.
           </p>
+          <!-- The Lick -->
           <code>160 E~ F♯~ G~ A~ F♯~~~ D~ E~~~~~</code>
         </section>
 
@@ -156,6 +158,7 @@
           <p>
             A <mark>/</mark> plays no sound for one time unit.
           </p>
+          <!-- Battle Against a True Hero -->
           <code>
             150
             e♭~/ f~/ B♭~/ c~/ A♭~ F~
@@ -169,6 +172,7 @@
             Multiple notes inside a pair of <mark>[]</mark> will play together.
             All notes in a chord will use the duration of the longest member note.
           </p>
+          <!-- Pushing Onwards -->
           <code>
             69
             [G♯d♯g♯~~] c♯~~ d♯~
@@ -188,6 +192,7 @@
             The <mark>|</mark> symbol will split a score into multiple <i>parts</i> that all play together.
             Parts share a common tempo, but are otherwise independent.
           </p>
+          <!-- Wet Hands -->
           <code>
             37
             A2C♯3A3B3C♯B3A3E3 D3F♯3C♯EC♯A3~~
@@ -208,6 +213,7 @@
             The default is <i>mezzo forte</i> (<mark>𝓶𝓯</mark>), and each step has a gain ratio of <math><msqrt>2</msqrt></math>
             (subject to change if someone has a better idea).
           </p>
+          <!-- Deep Blue -->
           <code>
             90
             𝓶𝓹 C3 E♭3 G3 C E♭ G~~~~~~~~~~
@@ -235,7 +241,7 @@
       </section>
 
       <section>
-        <h3>Instruments (TODO: examples)</h3>
+        <h3>Instruments</h3>
         <p>
           An instrument symbol at the start of a part will set that part's instrument.
           By default, the first track will use "beep", and all others will use "keys".
@@ -258,6 +264,31 @@
           <p>
             This is the default instrument for the first track.
           </p>
+          <!-- Pushing Onwards -->
+          <code>
+            138∿
+            G♯/G♯/G♯/A♯~~~B~~~~~
+            c♯~~~~~BA♯B~~~A♯~F♯~
+            A♯/F♯/F♯~A♯~~~B~~~~~
+            c♯~~~~~𝓶𝓹[Bb][A♯a♯][G♯g♯~~~][Gg~][D♯d♯~]
+          </code>
+          <!-- Balatro -->
+          <code>
+            105∿
+            B3DEF♯ABde
+            f♯~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            e~b~e~~~~~~~~~~~~~~~~~~~g~~~
+            f♯~g~f♯~A~~~~~e~B~~~d♯~f♯~baf♯d♯cA
+            B~~~F♯~~~~~~~G~A~
+          </code>
+          <!-- Rude Buster -->
+          <code>
+            140∿
+            B3C♯F♯ABc♯~B/B/e~~c♯~
+            ~F♯~G♯/AG♯/EC♯~~~~//
+            B3C♯F♯ABc♯~B/B/e~~f♯~
+            ~g♯/e/f♯~~~~//////
+          </code>
         </section>
 
         <section>
@@ -269,6 +300,67 @@
           <p>
             This is the default instrument for all tracks other than the first.
           </p>
+          <!-- Return of the Obra Dinn -->
+          <code>
+            111🎹
+            //G/G/G/G~D~~~//
+            G~~~D~G~~~B♭~d~~~
+            //c/c/c/c~A~~~//
+            c~~~A~E~~~F~G~~~
+            |🎹
+            [G1G2~~~][G3B♭3~][G1G2~][G1G2~~~][G3B♭3~][A1A2~]
+            [B♭1B♭2~~~][B♭3D~][A1A2~][B♭1B♭2~~~][B♭3D~~~]
+            [F1F2~~~][F3A3C~][F1F2~][F1F2~~~][F3A3C~][G1G2~]
+            [A1A2~~~][E3A3C~~~][D1D2~~~][D3F3A3~~~]
+          </code>
+          <!-- Hammer of Justice -->
+          <code>
+            160🎹
+            //𝓯c/G/B♭/A//F//G/
+            //c/G/B♭/A//F//G/
+            //c/G/B♭/A//F//G/
+            A♭//[FB♭]//[E♭c]/[Dd]//[E♭e♭]//d/
+            |🎹
+            [CGc~~~]////////////
+            [E♭B♭e♭~~~]////////////
+            [Fcf~~~]////////////
+            |∿🛏48
+            [A♭2A♭3~~][B♭2B♭3~~][C3C~][B♭2B♭3~~~~~~~]
+          </code>
+          <!-- Glory -->
+          <code>
+            140🎹
+            A♯2F3A♯3C♯F♯C♯A♯3F3A♯2F3A♯3C♯F♯C♯A♯3F3
+            G♯2F3G♯3CFCG♯3F3G♯2F3G♯3CFCG♯3F3
+            G♯2D♯3G♯3B3FB3G♯3D♯3G♯2D♯3G♯3B3FB3G♯3D♯3
+            G2D3G3DGDG3D3G2D3G3DGDG3D3
+            |∿
+            c♯~~~~~~~c♯~~~d♯~~~
+            f~~~~~~~d♯~~~~~~~
+            d♯~~~~~~~d~~d♯~~d~
+            c~~~~~~~A♯~~~~~~~
+          </code>
+          <!-- Deep Blue -->
+          <code>
+            1080🎹 𝓯
+            D3~~~~~~~~ E♭3~~ E3~~ G3~~ B♭3~~~~~ B3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ G3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            A3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ G3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ B3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            A3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ G3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //////////////////////// C3~~~~~~~~ E♭3~~ E3~~ F3~~ A♭3~~ A3~~
+            A3~~~~~ B3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ A3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ B3~~~~~ A3~~~~~ G3~~~~~ F3~~~~~
+            B3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            ~~~~~~~~~~~~~~~~~~~~~~~~ A3~~~~~~~~~~~~~~~~~ B3~~~~~~~~~~~~~~~~~ A3~~~~~~~~~~~~~~~~~ B3~~~~~~~~~~~~~~~~~ A3~~~~~~~~~~~ B3~~~~~~~~~~~ A3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            //////////////////////// A3~~~~~~~~~~~~~~~~~~~~~~~ B3~~~~~~~~~~~~~~~~~~~~~~~ A3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            //////////////////////// G3~~~~~~~~~~~~~~~~~~~~~~~ A3~~~~~~~~~~~~~~~~~~~~~~~ G3~~~~~~~~~~~~~~~~~~~~~~~ F3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ E3~~~~~~~ F3~~~~~~~ E♭3~~~~~~~ D3~~~~~~~~~~~~~~~~~~~~~~~
+            |🔔 𝓹𝓹
+            [E3E~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~] [G3B3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~] [G3B3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~] [E3E~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]
+            [E3E~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~] [G3B3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~] [G3B3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~] [E3E~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]
+            [E3E~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~] [G3B3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~] [G3B3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~] [E3E~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]
+            [E3E~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~] [G3B3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~] [G3B3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~] [E3E~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]
+            [E3E~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~] [G3B3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~] [G3B3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~] [E3E~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]
+            [E3E~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~] [G3B3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~] [G3B3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~] [E3E~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]
+            [E3E~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~] [G3B3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~] [G3B3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~] [E3E~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]
+            [E3E~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~] [G3B3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~] [G3B3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~] [E3E~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]
+          </code>
         </section>
 
         <section>
@@ -297,6 +389,45 @@
             will be cut off prematurely, because they don't extend the score duration
             to let them play to completion.
           </small>
+
+          <!-- Return of the Obra Dinn -->
+          <code>
+            111🔔
+            //[Gg~~][Gg~~][Gg~~][Gg~~][Dd~~~~~]
+            ///[Gg~~]///[Dd~~]
+            [Gg~~~]//[B♭b♭~~][dd6~~]////
+            /////////////
+          </code>
+          <!-- Balatro -->
+          <code>
+            105🔔
+            G3~~A3~~C~~D~~E~~G~~A~~B~~d~e~
+            e~~d~~B~~d~~A~~B~~G~~A~~E~G~
+            |🎹 𝓹𝓹
+            [C3C~][C3C~][C3C~][C3C~]//[C3C~]//[C3C~]//[C3C~][C3C~]//[C3C~]//
+            [C3B3~][C3B3~][C3B3~][C3B3~]//[C3B3~]//[C3B3~]//[C3B3~][C3B3~]//[C3B3~]//
+          </code>
+          <!-- Return of the Obra Dinn (Soldiers of the Sea) -->
+          <code>
+            111🔔
+            E♭~~~G~~~GB♭~~G~~~
+            //G~~~G~B♭e♭~~B♭~~~
+            D~~~F~~~FA~~F~~~
+            //F~~~F~D~~~C~~~
+            [Dd~~~][Gg~~~][Gg][B♭b♭~~][Gg~~~]
+            //[Gg~~~][Gg~][B♭b♭][dd6~~][B♭b♭~~~]
+            [Dd~~~][Ff~~~][Ff][B♭b♭~~][Ff~~~]
+            //[Ff~~~][Ff~][Dd~~~][Cc~~~]
+            |∿
+            [E♭2B♭2~][B♭2E♭3~]E♭2~[B♭2E♭3~]E♭2~[B♭2E♭3~]E♭2~[B♭2E♭3~]
+            [E♭2B♭2~][B♭2E♭3~]E♭2~[B♭2E♭3~]E♭2~[B♭2E♭3~][E♭2F3~][B♭2E♭3~]
+            [D2D3~][A2D3~]D2~[A2D3~]D2~[A2D3~]D2~[A2D3~]
+            [D2D3~][A2D3~]D2~[A2D3~]D2~[A2D3~]F2~[A2D3~]
+            G2~[D3G3~]G2~[D3G3~]G2~[D3G3~]G2~[D3G3~]
+            G2~[D3G3~]G2~[D3G3~]G2~[D3G3~]A2~[E3A3~]
+            B♭2~[D3F3~]B♭2~[D3F3~]B♭2~[D3F3~]B♭2~[D3F3~]
+            B♭2~[D3F3~]B♭2~[D3F3~]B♭2~[D3F3~]B♭2~[D3F3~]
+          </code>
         </section>
 
         <section>
@@ -308,6 +439,58 @@
           <p>
             This instrument existed in the original muzak.el codebase, but was not exposed for use on stream.
           </p>
+          <!-- Deep Blue -->
+          <code>
+            45🌊 𝓯𝓯
+            E3G3B3G3CG3B3G3
+            D3G3B3G3B3EB3A
+            [C♯3C♯]G3B3G3B3EB3G♯
+            [C3C]G3B3G3B2G3F♯3G3
+          </code>
+          <!-- Balatro -->
+          <code>
+            105🌊
+            D3E3G3A3B3DEG D3E3G3A3B3DEG D3E3G3A3B3DEG D3E3G3A3
+            D3E3G3A3[B3B][Dd][Ee][Gg] [D3D][E3E][G3G][A3A][B3B][Dd][Ee][Gg][D3D] [E3E][G3G][A3A][B3B][Dd][Ee][Gg] //
+          </code>
+          <!-- Dark Sanctuary -->
+          <code>
+            85🌊
+            A3CGDCDCDGDCD
+            A3CGDCDCDGDCD
+            F3CGDCDCDGDCD
+            A3CGDCE3DEBEDE
+          </code>
+          <!-- Severance -->
+          <code>
+            15🌊
+            [ce♭g~][d♭g♭b♭~][cfa~][c♭e♭a♭~]
+            [ce♭g~][d♭g♭b♭~][c♭fa~][c♭ac♭6][d♭ad♭6]
+            |🌊
+            [CE♭G~][D♭G♭B♭~][CFA~][C♭E♭A♭~]
+            [CE♭G~][D♭G♭B♭~][C♭FA~][C♭Ac♭][D♭Ad♭]
+          </code>
+          <!-- Third Sanctuary -->
+          <code>
+            85🌊 𝓯𝓯
+            D3~F3A3~F~~E~
+            C~~G3~A3~~//
+            A3~~B♭3CB♭3~~A3~
+            G3~~F3~E♭3~~F3~
+            A3~~~~~~~~~
+            |∿ 𝓹
+            FEFGAFEFGA
+            FEFGAFEFGA
+            E♭DE♭FGE♭DE♭FG
+            E♭DE♭FGE♭DE♭FG
+            🛏10
+            |∿ 𝓹
+            D3A3DEFDCD3G3A3
+            D3A3DEFDCD3G3A3
+            C3G3CDE♭CB♭3C3F3G3
+            C3G3CDE♭CB♭3C3F3G3
+            D3A3DEFDCD3G3A3
+          </code>
         </section>
 
         <section>
@@ -318,6 +501,46 @@
             but I recommend sticking to the <mark>E</mark> note for forward compatibility,
             in case I decide to add other drums to this instrument mappped to other notes.
           </p>
+          <!-- Gravity Falls -->
+          <code>
+            160🥁
+            𝓶𝓹E~~~//E~E~~~E~~~
+            𝓶𝓹E~~~//E~E~~~E~~~
+            𝓶𝓹E~~~//E~E~~~E~~~
+            E~E~E~E~E~E~EEEE
+            |🎹
+            f~d~A~d~f~d~A~d~
+            f~c~A~c~f~c~A~c~
+            e~c♯~A~c♯~e~c♯~A~c♯~
+            e~c♯~A~c♯~e~c♯~a~~~
+            |🎹
+            [D3F3A3~~~~~~~~~~~~~~~]
+            [F3A3C~~~~~~~~~~~~~~~]
+            [A3C♯E~~~~~~~~~~~~~~~]
+            🛏16
+          </code>
+          <!-- Pushing Onwards -->
+          <code>
+            138🥁
+            ////E~EE////E~~~
+            ////E~EE////E~~~
+            ////E~EE////EEE~
+            ////E~E~EE~EE~EE
+            |∿ 𝓶𝓯
+            G♯3/G♯3/G♯3/A♯3~~~B3~~~~~
+            C♯~~~~~B3A♯3B3~~~A♯3~F♯3~
+            G♯3/G♯3/G♯3/A♯3~~~B3~~~~~
+            C♯~~~~~B3A♯3B3~~~A♯3~F♯3~
+            |🎹 𝓶𝓹 [G♯d♯~~~][G♯d♯~][G♯d♯][G♯d♯~][G♯d♯][G♯d♯~~~][G♯d♯][G♯c♯]
+            [G♯e~~~][G♯e~][G♯e][G♯e~][G♯e][G♯e~~~][G♯e][G♯d]
+            [G♯d♯~~~][G♯d♯~][G♯d♯][G♯d♯~][G♯d♯][G♯d♯~~~][G♯d♯][G♯c♯]
+            [G♯e~~~][G♯e~][G♯e][G♯e~][G♯e][G♯e~][c♯f♯~~~]
+            |🎹 𝓹𝓹
+            G♯2/G♯3D♯3G♯2/G♯3D♯3G♯2/G♯3D♯3G♯2/G♯3D♯3
+            E2/E3B2E2/E3B2E2/E3B2E2/E3B2
+            G♯2/G♯3D♯3G♯2/G♯3D♯3G♯2/G♯3D♯3G♯2/G♯3D♯3
+            E2/E3B2E2/E3B2E2/E3B2E2/E3B2
+          </code>
         </section>
       </section>
     </section>

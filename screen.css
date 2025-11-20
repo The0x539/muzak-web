@@ -111,17 +111,26 @@ section:has(> h4:first-child) {
     width: 100%;
   }
 
-  button {
-    height: 2em;
-    margin-inline: 2rem 1rem;
-    vertical-align: middle;
+  div {
+    display: flex;
+    gap: 1em;
+    margin-inline-start: 2rem;
+    width: 100%;
+
+    input {
+      height: 2em;
+      vertical-align: middle;
+      flex-grow: 1;
+    }
+
+    button {
+      height: 2em;
+      vertical-align: middle;
+    }
   }
 
-  input {
-    height: 2em;
-    width: auto;
-    vertical-align: middle;
-    flex-grow: 1;
+  div + div {
+    margin-block-start: 0.5em;
   }
 
   small {

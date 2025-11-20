@@ -30,14 +30,19 @@ function render(score, volume = 0.2) {
 const getElements = tag => [...document.getElementsByTagName(tag)];
 
 for (const code of getElements('code')) {
+  const container = document.createElement('div');
+
   const input = document.createElement('input');
   input.value = code.innerText;
-  code.after(input);
-  code.remove();
 
   const button = document.createElement('button');
   button.innerText = '▶ play';
-  input.before(button);
+
+  container.appendChild(button);
+  container.appendChild(input);
+
+  code.after(container);
+  code.remove();
 
   button.addEventListener('click', () => play(input.value));
 }
