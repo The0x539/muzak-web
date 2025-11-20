@@ -35,10 +35,6 @@
   </header>
 
   <main>
-    <p>
-      there will be (more) documentation here in the future.
-    </p>
-
     <div role="toolbar" class="palette">
       <mark>♭</mark>
       <mark>♮</mark>
@@ -209,7 +205,8 @@
             A valid combination of the <mark>𝓹</mark>, <mark>𝓶</mark>, and <mark>𝓯</mark> symbols between notes
             changes that part's <a href="https://en.wikipedia.org/wiki/Musical_Symbols_(Unicode_block)">dynamic</a> from that point onward.
             The valid range is from <i>pianissimo</i> (<mark>𝓹𝓹</mark>) to <i>fortissimo</i> (<mark>𝓯𝓯</mark>).
-            The default is <i>mezzo forte</i> (<mark>𝓶𝓯</mark>), and each step has a gain ratio of √2 (subject to change if someone has a better idea).
+            The default is <i>mezzo forte</i> (<mark>𝓶𝓯</mark>), and each step has a gain ratio of <math><msqrt>2</msqrt></math>
+            (subject to change if someone has a better idea).
           </p>
           <code>
             90
@@ -238,24 +235,91 @@
       </section>
 
       <section>
-        <h3>Instruments (TODO)</h3>
+        <h3>Instruments (TODO: examples)</h3>
         <p>
           An instrument symbol at the start of a part will set that part's instrument.
           By default, the first track will use "beep", and all others will use "keys".
         </p>
         <p>
-          The "bells" and "waterphone" instruments were present in Bezelea's original Emacs Lisp implementation,
-          but as far as I know, there was no way to actually access them for use on the stream.
-
-          The snare drum is a new addition, and is unpitched.
+          All of the instruments are relatively simple derivations of primitive waveforms.
+          <a href="https://github.com/The0x539/muzak/blob/trunk/src/instruments.rs">Their source code</a>
+          may be straightforward enough to make sense of.
         </p>
-        <ul>
-          <li><mark>∿</mark>: Beep</li>
-          <li><mark>🎹</mark>: Keys</li>
-          <li><mark>🔔</mark>: Bells</li>
-          <li><mark>🌊</mark>: Waterphone</li>
-          <li><mark>🥁</mark>: Snare</li>
-        </ul>
+        <p>
+          For all instruments other than the snare, the renderer applies a 1000 Hz low-pass filter to the track as a whole.
+          This filter can make some things sound a bit muffled; I may play around with adding some flexibility here in the future.
+        </p>
+
+        <section>
+          <h4><mark>∿</mark> Beep</h4>
+          <p>
+            A pure sine wave with amplitude 0.8 (at <mark>𝓶𝓯</mark>).
+          </p>
+          <p>
+            This is the default instrument for the first track.
+          </p>
+        </section>
+
+        <section>
+          <h4><mark>🎹</mark> Keys</h4>
+          <p>
+            A square wave with starting amplitude 0.5 that decays
+            <em>linearly</em> to 0.25 over the note's duration.
+          </p>
+          <p>
+            This is the default instrument for all tracks other than the first.
+          </p>
+        </section>
+
+        <section>
+          <h4><mark>🔔</mark> Bells</h4>
+          <p>
+            A square wave with starting amplitude 0.4 that decays <em>exponentially</em> according to
+            <math>
+              <msup>
+                <mi>e</mi>
+                <mrow>
+                  <mo>-</mo>
+                  <mn>2</mn>
+                  <mi>t</mi>
+                </mrow>
+              </msup>
+            </math>.
+            It takes about 4 seconds to become inaudible (and the code explicitly cuts it off at 4 seconds).
+            As such, note duration is basically<sup>*</sup> ignored for this instrument, and notes can overlap.
+          </p>
+          <p>
+            This instrument existed in the original muzak.el codebase, but was not exposed for use on stream.
+          </p>
+
+          <small>
+            * At the time of writing, there's a bug where short bell notes at the end of a score
+            will be cut off prematurely, because they don't extend the score duration
+            to let them play to completion.
+          </small>
+        </section>
+
+        <section>
+          <h4><mark>🌊</mark> Waterphone</h4>
+          <p>
+            A triangle wave that is initially silent,
+            but ramps <strong>up</strong> linearly to 1.0 over the note's duration.
+          </p>
+          <p>
+            This instrument existed in the original muzak.el codebase, but was not exposed for use on stream.
+          </p>
+        </section>
+
+        <section>
+          <h4><mark>🥁</mark> Snare</h4>
+          <p>
+            White noise with starting amplitude 0.3 that decays linearly to silence over a fixed duration of 0.15 seconds.
+            This instrument ignores both pitch and duration,
+            but I recommend sticking to the <mark>E</mark> note for forward compatibility,
+            in case I decide to add other drums to this instrument mappped to other notes.
+          </p>
+        </section>
+      </section>
     </section>
   </main>
 
