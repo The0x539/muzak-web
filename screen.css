@@ -12,7 +12,7 @@ input, textarea, a, code, abbr, samp {
 }
 
 :root {
-  font-family: "Cascadia Code";
+  font-family: "Cascadia Code", monospace, sans-serif;
   font-size: 16px;
   color-scheme: light dark;
 }
