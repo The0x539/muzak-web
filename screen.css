@@ -7,7 +7,7 @@
   text-transform: lowercase;
 }
 
-input, textarea, a, code, abbr {
+input, textarea, a, code, abbr, samp {
   text-transform: none;
 }
 
