@@ -85,10 +85,110 @@
     </div>
 
     <section>
+      <h2>What is this?</h2>
+      <small>Oops, that's a wall of text!</small>
+
+      <p>
+        There exists a "guy" known as <a href="https://colonq.computer">LCOLONQ</a>.
+        From that guy, there is a stream.
+        On that stream, there is a redeem: <cite>Bells of Bezelea</cite>.
+        With it, you can submit music to be played on the computer.
+        This is how that happens.
+      </p>
+
+      <aside>
+        For a more complete historical account, see <a href="/~bezelea/bells/">Bezelea's page</a>.
+      </aside>
+      <p>
+        In the times before, the Bells were powered by an Emacs Lisp module called <cite>muzak.el</cite>.
+        It worked by converting the input music notation to a big FFmpeg
+        <a href="https://ffmpeg.org/ffmpeg-filters.html#aevalsrc">aevalsrc</a> expression and passing it as a command-line argument.
+        This is a very cool approach, and did prove viable for use on stream,
+        but more advanced usage exposed some practical limitations:
+        Layered notes were <em>very</em> prone to clipping,
+        poor performance meant possibly waiting over a minute before it would start playing on stream,
+        and to try and mitigate these issues, there were limits on what a score could contain.
+      </p>
+      <p>
+        When I came along and took an interest in the bells,
+        I made a few arrangements by hand, but that quickly became impractical.
+        There were already <a href="/~prod/toy/dbkai/">tools</a> to convert from MIDI,
+        but I wanted to make something more suited to working with MuseScore.
+        This program, which later became <cite>muzak compile</cite>,
+        was a major boon to my workflow,
+        but made <cite>muzak.el</cite>'s shortcomings more obvious.
+      </p>
+      <p>
+        Unsatisfied with the status quo, I was taken by <a href="https://dwarffortresswiki.org/index.php/Strange_mood">a fey mood</a>.
+        The fruit of my labor, <cite><a href="https://github.com/The0x539/muzak/">muzak-rs</a></cite>,
+        is a <strong>command-line suite</strong> featuring:
+        <ul>
+          <li>
+            <cite>muzak play</cite>:
+            A port of <cite>muzak.el</cite> to Rust (powered by <a href="https://crates.io/crates/rodio">rodio</a>),
+            fast enough to play music in real time and with <em>reduced</em> clipping.
+          </li>
+          <li>
+            <cite>muzak compile</cite>:
+            A tool to convert <a href="https://www.musicxml.com/">MusicXML</a>
+            (a sheet music format for which many music programs have import/export support)
+            to the format used by <cite>Muzak</cite>.
+          </li>
+          <li>
+            <cite>muzak submit</cite>:
+            A basic way to submit a score directly to LCOLONQ's stream from the command line.
+            If you're already invoking <cite>muzak compile</cite>, then pasting into <a href="https://secure.colonq.computer/menu">the men:u</a>
+            is probably a much bigger hassle than just piping the output into <cite>muzak submit</cite>.
+          </li>
+        </ul>
+      </p>
+      <p>
+        <cite>muzak play</cite> also has several enhancements over <cite>muzak.el</cite>,
+        expanding the musical possibilities while (hopefully) retaining the spirit of the original project:
+        <ul>
+          <li>
+            A score can have:
+            <ul>
+              <li>More than 60 seconds of music</li>
+              <li>More than 500 notes</li>
+              <li>More than 3 tracks</li>
+              <li>More than 4 notes in a chord</li>
+            </ul>
+          </li>
+          <li>Dynamics, so backing chords can avoid drowning out the main musical voice</li>
+          <li>Notes can be flat: no more converting to the equivalent sharp/natural</li>
+          <li>
+            Each track can specify its instrument, rather than being stuck with one "beep" and two "keys"
+            <ul>
+              <li>
+                The "bells" and "waterphone" instruments, which were unused in <cite>muzak.el</cite>,
+                are now available.
+              </li>
+              <li>
+                At the time of writing, there is also one <strong>brand new instrument</strong>: the "snare".
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </p>
+    </section>
+
+    <section>
       <h2>Usage</h2>
 
       <p>
+        All of the examples below are playable and editable!
         Click any <mark>glowing</mark> text to copy it.
+      </p>
+      <p>
+        The demo on this page uses a WebAssembly build of <cite>muzak-rs</cite>,
+        so it should produce the exact same audio as command-line <cite>muzak play</cite>
+        or LCOLONQ's <cite>Bells of Bezelea</cite> redeem.
+      </p>
+      <p>
+        If command-line output sounds a bit crunchy, try lowering the <mark>--volume</mark>.
+        You can increase your system volume to compensate.
+        I don't fully understand the nature of this problem; help is welcome.
       </p>
 
       <section>

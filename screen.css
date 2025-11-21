@@ -70,8 +70,30 @@ mark {
   }
 }
 
+aside {
+  float: right;
+  width: 200px;
+  border-inline-start: 3px solid currentColor;
+  padding-inline-start: 1em;
+  padding-block: 0.4em;
+}
+
+small {
+  font-size: 0.75rem;
+  opacity: 0.65;
+}
+
 section:has(> h2:first-child) {
-  max-width: 900px;
+  max-width: 960px;
+
+  h2 {
+    margin-block: 0.5em;
+  }
+
+  h2 + small {
+    position: relative;
+    top: -1rem;
+  }
 }
 
 section:has(> h3:first-child) {
@@ -105,16 +127,18 @@ section:has(> h4:first-child) {
     margin: 0;
   }
 
+  > :not(h4) {
+    margin-inline-start: 2em;
+  }
+
   p {
     margin: 0;
-    margin-inline-start: 2rem;
     width: 100%;
   }
 
   div {
     display: flex;
     gap: 1em;
-    margin-inline-start: 2rem;
     width: 100%;
 
     input {
@@ -131,12 +155,6 @@ section:has(> h4:first-child) {
 
   div + div {
     margin-block-start: 0.5em;
-  }
-
-  small {
-    margin-inline-start: 2rem;
-    font-size: 0.75rem;
-    opacity: 0.65;
   }
 }
 
