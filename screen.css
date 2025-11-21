@@ -71,7 +71,7 @@ mark {
 }
 
 aside {
-  float: right;
+  float: inline-end;
   width: 200px;
   border-inline-start: 3px solid currentColor;
   padding-inline-start: 1em;
@@ -116,15 +116,13 @@ section:has(> h3:first-child) {
 section:has(> h4:first-child) {
   margin-block-start: 1.5em;
 
-  display: flex;
   flex-wrap: wrap;
   align-items: middle;
   row-gap: 0.5em;
   
   h4 {
-    width: 100%;
     font-size: 1.25rem;
-    margin: 0;
+    margin-block: 0;
 
     mark {
       width: 2rem;
@@ -137,14 +135,14 @@ section:has(> h4:first-child) {
   }
 
   p {
-    margin-block: 0;
-    width: 100%;
+    margin-block: 1em;
   }
 
   div {
+    margin-block-start: 1em;
+
     display: flex;
     gap: 1em;
-    width: 100%;
 
     input {
       height: 2em;
@@ -156,10 +154,6 @@ section:has(> h4:first-child) {
       height: 2em;
       vertical-align: middle;
     }
-  }
-
-  div + div {
-    margin-block-start: 0.5em;
   }
 }
 
