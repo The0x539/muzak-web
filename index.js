@@ -80,55 +80,70 @@ for (const mark of getElements('mark')) {
   mark.addEventListener('mousedown', preventAccidentalSelect);
 }
 
-const volumeControl = document.getElementById('volume');
-//volumeControl.valueAsNumber = 1.0;
-
-class Player {
-  static audioCtx;
-  static current;
-
-  constructor() {
-    this.ctx = Player.audioCtx ??= new AudioContext();
-
-    this.source = this.ctx.createBufferSource();
-    this.gain = this.ctx.createGain();
-    this.sink = this.ctx.destination;
-
-    this.setGain(volumeControl.valueAsNumber);
-
-    this.source.connect(this.gain)
-    this.gain.connect(this.sink);
+class ByteBuffer {
+  constructor(capacity) {
+    this.buffer = new ArrayBuffer(capacity);
+    this.view = new DataView(this.buffer);
+    this.len = 0;
   }
 
-  play(samples) {
-    const buffer = this.ctx.createBuffer(1, samples.length, 48000);
-    buffer.copyToChannel(samples, 0);
-    this.source.buffer = buffer;
-    this.source.start();
+  u8(v) {
+    this.view.setUint8(this.len, v);
+    this.len += 1;
   }
 
-  setGain(gain) {
-    this.gain.gain.value = gain;
+  u16(v) {
+    this.view.setUint16(this.len, v, true);
+    this.len += 2;
   }
 
-  stop() {
-    this.source.disconnect();
+  u32(v) {
+    this.view.setUint32(this.len, v, true);
+    this.len += 4;
+  }
+
+  str(v) {
+    for (let i = 0; i < v.length; i++) {
+      this.view.setUint8(this.len + i, v.codePointAt(i));
+    }
+    this.len += v.length;
   }
 }
 
-export function stop() {
-  Player.current?.stop();
+function buildWAV(samples, sampleRate) {
+  const bytesPerSample = samples.BYTES_PER_ELEMENT;
+  const bitsPerSample = 8 * bytesPerSample;
+  const dataBytes = bytesPerSample * samples.length;
+
+  const formatTag = samples instanceof Float32Array ? 3 : 1;
+
+  const header = new ByteBuffer(44);
+
+  header.str('RIFF');
+  header.u32(header.buffer.byteLength + dataBytes - 4);
+  header.str('WAVE');
+
+  header.str('fmt ');
+  header.u32(16);                          // cksize
+  header.u16(formatTag);                   // wFormatTag
+  header.u16(1);                           // nChannels
+  header.u32(sampleRate);                  // nSamplesPerSec
+  header.u32(sampleRate * bytesPerSample); // nAvgBytesPerSec
+  header.u16(bytesPerSample);              // nBlockAlign
+  header.u16(bitsPerSample);               // wBitsPerSample
+
+  header.str('data');
+  header.u32(dataBytes);
+
+  return new Blob([header.buffer, samples], { type: "audio/wav" });
 }
+
+const audioElem = document.getElementsByTagName('audio')[0];
 
 export async function play(score_text) {
-  stop();
   const samples = await render(score_text);
-  Player.current = new Player();
-  Player.current.play(samples);
-}
-
-export function setVolume(volume) {
-  Player.current?.setGain(volume);
+  audioElem.src = URL.createObjectURL(buildWAV(samples, 48000));
+  audioElem.play();
 }
 
 // very simple hot reload

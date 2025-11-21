@@ -31,10 +31,32 @@ body {
 main {
   height: 100%;
   display: flex;
+  margin-inline: 1em;
 
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+audio {
+  position: fixed;
+  z-index: 100;
+  opacity: 1;
+  left: 50%;
+  bottom: 1em;
+  width: min(100vw, 720px);
+  max-height: 40px;
+
+  translate: -50% 0;
+
+  transition: translate 0.2s ease-out;
+  &:not([src]) {
+    translate: -50% 100px;
+  }
+}
+
+audio[src] ~ footer {
+  margin-block-end: 3rem;
 }
 
 h2 {
@@ -73,6 +95,7 @@ mark {
 aside {
   float: inline-end;
   width: 200px;
+  margin-inline-start: 0.25em;
   border-inline-start: 3px solid currentColor;
   padding-inline-start: 1em;
   padding-block: 0.4em;
@@ -81,6 +104,7 @@ aside {
 small {
   font-size: 0.75rem;
   opacity: 0.65;
+  display: block;
 }
 
 section:has(> h2:first-child) {
@@ -100,7 +124,7 @@ section:has(> h3:first-child) {
   border: 1px solid ButtonBorder;
   position: relative;
   padding: 1.5em;
-  margin-block: 2em;
+  margin-block: 2em 0;
 
   h3 {
     font-size: 1.5rem;
@@ -161,6 +185,7 @@ textarea {
   min-height: 100px;
   min-width: 50px;
   max-width: 90vw;
+  margin-block: 1rem;
 }
 
 header {
@@ -217,8 +242,7 @@ footer {
 }
 
 [role="toolbar"] {
-  width: 100%;
-  max-width: 570px;
+  width: min-content;
 
   display: flex;
   margin-block: 1rem;
@@ -227,9 +251,5 @@ footer {
   input[type="range"] {
     width: min(100%, 200px);
     margin-inline-start: auto;
-  }
-
-  &.palette {
-    width: min-content;
   }
 }

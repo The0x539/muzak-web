@@ -37,6 +37,8 @@
     >↝</a>
   </header>
 
+  <audio controls></audio>
+
   <main>
     <div role="toolbar" class="palette">
       <mark>♭</mark>
@@ -81,11 +83,7 @@
       C3 G3 B♭3 G3 C3 G3 B♭3 G3
       C3 E3 B♭3 E3 C / / /
     </textarea>
-    <div role="toolbar">
-      <button onclick="play(score.value)">▶ play</button>
-      <button onclick="stop()">■ stop</button>
-      <input id="volume" type="range" min="0" max="1" step="any" oninput="setVolume(this.valueAsNumber)" />
-    </div>
+    <button onclick="play(score.value)">▶ play</button>
 
     <section>
       <h2>What is this?</h2>
