@@ -59,6 +59,7 @@ function copyText(event) {
   const rect = event.target.getClientRects()[0];
   bubble.style.left = rect.x + window.scrollX + 'px';
   bubble.style.top = rect.y + window.scrollY + 'px';
+  bubble.style.fontSize = getComputedStyle(event.target).fontSize;
 
   document.body.appendChild(bubble);
   setTimeout(() => bubble.remove(), 1000);

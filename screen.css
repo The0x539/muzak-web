@@ -59,7 +59,7 @@ mark {
   pointer-events: none;
   position: absolute;
 
-  animation: 1s ease-out 1 copy-anim;
+  animation: 1s ease-out 1 forwards copy-anim;
 }
 
 @keyframes copy-anim {
@@ -125,14 +125,19 @@ section:has(> h4:first-child) {
     width: 100%;
     font-size: 1.25rem;
     margin: 0;
+
+    mark {
+      width: 2rem;
+      display: inline-block;
+    }
   }
 
   > :not(h4) {
-    margin-inline-start: 2em;
+    margin-inline-start: 2rem;
   }
 
   p {
-    margin: 0;
+    margin-block: 0;
     width: 100%;
   }
 
