@@ -1,7 +1,12 @@
 #!/usr/bin/env sh
 
-host=the0x539@pub.colonq.computer
+FILES=(
+	index.html
+	index.js
+	screen.css
+	worker.js
+	pkg/muzak_web.js
+	pkg/muzak_web_bg.wasm
+)
 
-rsync -u index.html $host:public_html/bells.html
-rsync -u index.js screen.css worker.js $host:public_html/
-rsync -u pkg/muzak_web.js pkg/muzak_web_bg.wasm $host:public_html/pkg/
+rsync -vuR ${FILES[*]} the0x539@pub.colonq.computer:public_html/bells/
