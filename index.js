@@ -1,29 +1,32 @@
-import { render_score, default as init } from "./pkg/muzak_web.js";
+let render;
 
-await init();
+if (window.Worker) {
+  const worker = new Worker("./worker.js", { type: "module" });
 
-let worker;
-function renderAsync(score, volume) {
-  worker ??= new Worker("./worker.js", { type: "module" });
-  return new Promise(resolve => {
-    const listener = message => {
-      // make sure we're not getting the result of a past dispatch
-      if (message.data.score === score) {
-        // stop listening for the results of future dispatches
-        worker.removeEventListener("message", listener);
-        resolve(message.data.samples);
-      }
-    };
-    worker.addEventListener("message", listener);
-    worker.postMessage({ score, volume });
-  });
-}
+  render = function render(score, volume = 0.2) {
+    return new Promise(resolve => {
+      const listener = message => {
+        // make sure we're not getting the result of a past dispatch
+        if (message.data.score === score) {
+          // stop listening for the results of future dispatches
+          worker.removeEventListener("message", listener);
+          resolve(message.data.samples);
+        }
+      };
+      worker.addEventListener("message", listener);
+      worker.postMessage({ score, volume });
+    });
+  }
+} else {
+  let pMuzak = (async () => {
+    const module = await import("./pkg/muzak_web.js");
+    await module.default();
+    return module;
+  })();
 
-function render(score, volume = 0.2) {
-  if (window.Worker) {
-    return renderAsync(score, volume);
-  } else {
-    return render_score(score_text, volume);
+  render = async function render(score, volume = 0.2) {
+    const muzak = await pMuzak;
+    return muzak.render_score(score, volume);
   }
 }
 
