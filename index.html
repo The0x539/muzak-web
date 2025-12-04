@@ -22,6 +22,14 @@
       score.value = score.value.replaceAll(/^ +/gm, '').trim();
     }
   </script>
+
+  <noscript>
+    <style>
+      .interactive {
+        display: none !important;
+      }
+    </style>
+  </noscript>
 </head>
 
 <body>
@@ -40,7 +48,7 @@
   <audio controls></audio>
 
   <main>
-    <div role="toolbar" class="palette">
+    <div role="toolbar" class="palette interactive">
       <mark>♭</mark>
       <mark>♮</mark>
       <mark>♯</mark>
@@ -61,7 +69,7 @@
       <mark>🛏️</mark>
     </div>
 
-    <textarea id="score" rows="21" cols="60" spellcheck="false">
+    <textarea id="score" rows="21" cols="60" spellcheck="false" class="interactive">
       60
       / C F G
       A// G A G A B♭
@@ -84,7 +92,7 @@
       C3 E3 B♭3 E3 C / / /
     </textarea>
 
-    <div role="toolbar">
+    <div role="toolbar" class="interactive">
       <button onclick="play(score.value)">▶ Play</button>
       <button onclick="toggleVisualSettings(event)">🎨 This page is ugly</button>
     </div>
@@ -213,12 +221,18 @@
     <section>
       <h2>Usage</h2>
 
-      <p>
+      <p class="interactive">
         All of the examples below are playable and editable!
         Click any <mark>glowing</mark> text to copy it.
       </p>
+      <noscript>
+        <p>
+          With JavaScript enabled, this page has an interactive demo at the top,
+          as well as a mini editor+player for each example.
+        </p>
+      </noscript>
       <p>
-        The demo on this page uses a WebAssembly build of <cite>muzak-rs</cite>,
+        The demo uses a WebAssembly build of <cite>muzak-rs</cite>,
         so it should produce the exact same audio as command-line <cite>muzak play</cite>
         or LCOLONQ's <cite>Bells of Bezelea</cite> redeem.
       </p>

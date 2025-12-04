@@ -83,6 +83,20 @@ h2 {
   font-size: 2.5rem;
 }
 
+code {
+  border: 1px solid ButtonBorder;
+  display: block;
+  height: 2em;
+  line-height: calc(2em - 2px);
+  overflow-x: auto;
+  text-wrap: nowrap;
+  background: ButtonFace;
+  vertical-align: middle;
+  padding-inline: 2px;
+  border-radius: 2px;
+  margin-block-start: 1em;
+}
+
 mark {
   cursor: pointer;
   background: none;
@@ -159,7 +173,6 @@ section:has(> h4:first-child) {
   margin-block-start: 1.5em;
 
   flex-wrap: wrap;
-  align-items: middle;
   row-gap: 0.5em;
   
   h4 {
