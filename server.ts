@@ -25,8 +25,19 @@ Deno.serve(async (req) => {
 
   const filetype = filetypes.get(path.extname(route));
 
-  const file = await Deno.open(filepath);
-  return new Response(file.readable, {
+  let body;
+  if (route === "/index.html") {
+    const html = await Deno.readTextFile(filepath);
+    body = html.replace(
+      "</head>",
+      '<script src="./live-reload.js"></script></head>',
+    );
+  } else {
+    const file = await Deno.open(filepath);
+    body = file.readable;
+  }
+
+  return new Response(body, {
     status: 200,
     headers: {
       "Content-Type": filetype ?? "application/octet-stream",

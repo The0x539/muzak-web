@@ -3,6 +3,7 @@
 FILES=(
 	index.html
 	index.js
+	render.js
 	screen.css
 	worker.js
 	pkg/muzak_web.js
