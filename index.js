@@ -21,12 +21,19 @@ for (const code of getElements('code')) {
 }
 
 function copyText(event) {
-  navigator.clipboard.writeText(event.target.innerText);
+  const text = event.target.innerText;
+
+  navigator.clipboard.writeText(text);
   event.preventDefault();
+
+  const textbox = document.activeElement;
+  if (textbox instanceof HTMLTextAreaElement || textbox instanceof HTMLInputElement) {
+    textbox.setRangeText(text, textbox.selectionStart, textbox.selectionEnd, 'end');
+  }
 
   const bubble = document.createElement('span');
   bubble.ariaHidden = "true";
-  bubble.innerText = event.target.innerText;
+  bubble.innerText = text;
   bubble.classList.add('copy-anim');
 
   const rect = event.target.getClientRects()[0];
@@ -39,10 +46,8 @@ function copyText(event) {
 }
 
 function preventAccidentalSelect(event) {
-  if (event.detail > 1) {
-    window.getSelection().removeAllRanges();
-    event.preventDefault();
-  }
+  window.getSelection().removeAllRanges();
+  event.preventDefault();
 }
 
 for (const mark of getElements('mark')) {
