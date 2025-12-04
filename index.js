@@ -159,6 +159,61 @@ document.addEventListener('click', event => {
   }
 });
 
+let localFontsAdded = false;
+export async function addLocalFonts(datalist) {
+  if (localFontsAdded) return;
+  if (!("queryLocalFonts" in window)) return;
+
+  let fonts;
+  try {
+    fonts = await window.queryLocalFonts();
+  } catch {
+    return;
+  }
+
+  const families = new Set();
+  for (const font of fonts) {
+    families.add(font.family);
+  }
+
+  for (const family of families) {
+    const option = document.createElement('option');
+    option.value = family;
+    datalist.appendChild(option);
+  }
+
+  localFontsAdded = true;
+}
+
+function makeFontStack(font) {
+  switch (font) {
+    case 'sans-serif':
+      return font;
+
+    case 'monospace':
+    case 'serif': 
+      return `${font}, sans-serif`;
+
+    case 'Cascadia Code':
+      return `'Cascadia Code', monospace, sans-serif`;
+
+    default:
+      if (font.includes(' ')) font = `'${font}'`;
+      return `${font}, 'Cascadia Code', monospace, sans-serif`;
+  }
+}
+
+export function updateFont(font) {
+  font = font.trim();
+  if (font === "") font = "Cascadia Code";
+
+  const stylesheet = document.styleSheets[0];
+  const rule = [...stylesheet.cssRules].find(r => r.selectorText === ":root");
+  rule.style.fontFamily = makeFontStack(font);
+}
+
+updateFont(document.getElementById('fontbox').value);
+
 // very simple hot reload
 if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
   const socket = new WebSocket("ws://localhost:8001");

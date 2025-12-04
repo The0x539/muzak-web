@@ -33,6 +33,10 @@ input, textarea, a, code, abbr, samp, mark, .copy-anim {
   text-transform: none;
 }
 
+cite, input, textarea, code {
+  font-family: "Cascadia Code", monospace, sans-serif;
+}
+
 .hidden {
   display: none !important;
 }
@@ -291,11 +295,13 @@ footer {
     display: table-cell;
     border: 1px solid ButtonBorder;
     padding: 0.5em;
+  }
 
+  label:has(input:is([type="checkbox"], [type="radio"])) {
     &:has(:checked) {
       background: light-dark(#e7e7f7, #334);
     }
-    &:hover {
+    &:hover, &:has(:focus-visible) {
       background: light-dark(#eef, #272734);
       &:has(input:checked) {
         background: light-dark(#d6d6ef, #445);
@@ -304,5 +310,14 @@ footer {
     &:active:active:active {
       background: light-dark(#cce, #557);
     }
+  }
+
+  input[type="text"] {
+    background: none;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid ButtonBorder;
+    height: 1rem;
+    font-size: 0.8rem;
   }
 }

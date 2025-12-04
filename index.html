@@ -30,7 +30,7 @@
       href="https://pub.colonq.computer/~llll/cgi-bin/ring?me=the0x539&offset=-1"
       rel="prev"
     >↜</a>
-    <h1>the rusty bells</h1>
+    <h1>The Rusty Bells</h1>
     <a
       href="https://pub.colonq.computer/~llll/cgi-bin/ring?me=the0x539&offset=1"
       rel="next"
@@ -108,6 +108,16 @@
       <label>
         <input type="checkbox" id="lowercase" checked />
         Lowercase
+      </label>
+
+      <label>
+        Font:
+        <input type="text" id="fontbox" list="fontlist" onclick="addLocalFonts(fontlist)" oninput="updateFont(this.value)" />
+        <datalist id="fontlist">
+          <option value="sans-serif"></option>
+          <option value="serif"></option>
+          <option value="monospace"></option>
+        </datalist>
       </label>
     </div>
 
@@ -671,7 +681,7 @@
   </main>
 
   <footer>
-    source code:
+    Source code:
     <ul>
       <li><a href="https://github.com/the0x539/muzak">muzak-rs</a></li>
       <li><a href="https://github.com/the0x539/muzak-web">muzak-web (you are here)</a></li>
