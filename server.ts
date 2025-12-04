@@ -42,6 +42,8 @@ const activeSockets: WebSocket[] = [];
 Deno.serve({ port: 8001 }, (req) => {
   const { socket, response } = Deno.upgradeWebSocket(req);
 
+  setInterval(() => socket.send("ping"), 30000);
+
   activeSockets.push(socket);
 
   return response;
