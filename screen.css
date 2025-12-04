@@ -27,6 +27,10 @@ math {
   &:has(#lowercase:checked) {
     text-transform: lowercase;
   }
+
+  &:has(#show-visual-settings:not(:checked)) #visual-settings {
+    display: none;
+  }
 }
 
 input, textarea, a, code, abbr, samp, mark, .copy-anim {
@@ -278,22 +282,50 @@ footer {
   display: flex;
   margin-block: 1rem;
   gap: 1em;
-
-  input[type="range"] {
-    width: min(100%, 200px);
-    margin-inline-start: auto;
-  }
 }
 
 [role="radiogroup"] {
-  display: inline-table;
-  border-collapse: collapse;
+  display: flex;
   border: none;
   padding: 0;
 
-  input {
-    opacity: 0;
-    position: absolute;
+  label {
+    &:not(:first-child) {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    &:not(:last-child) {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    input {
+      opacity: 0;
+      position: absolute;
+    }
+  }
+}
+
+label:has(input) {
+  user-select: none;
+  border: 1px solid ButtonBorder;
+  padding: 0.5em;
+  border-radius: 4px;
+}
+
+label:has(input:is([type="radio"], [type="checkbox"])) {
+  &:has(:checked) {
+    background: light-dark(#e7e7f7, #334);
+  }
+  &:hover, &:has(:focus-visible) {
+    background: light-dark(#eef, #272734);
+    &:has(input:checked) {
+      background: light-dark(#d6d6ef, #445);
+    }
+  }
+  &:active:active:active {
+    background: light-dark(#cce, #557);
   }
 }
 
@@ -302,28 +334,6 @@ footer {
   padding: 1em;
   display: flex;
   align-items: center;
-
-  label {
-    user-select: none;
-    display: table-cell;
-    border: 1px solid ButtonBorder;
-    padding: 0.5em;
-  }
-
-  label:has(input:is([type="checkbox"], [type="radio"])) {
-    &:has(:checked) {
-      background: light-dark(#e7e7f7, #334);
-    }
-    &:hover, &:has(:focus-visible) {
-      background: light-dark(#eef, #272734);
-      &:has(input:checked) {
-        background: light-dark(#d6d6ef, #445);
-      }
-    }
-    &:active:active:active {
-      background: light-dark(#cce, #557);
-    }
-  }
 
   input[type="text"] {
     background: none;

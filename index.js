@@ -58,16 +58,13 @@ export async function play(score_text) {
   audioElem.play();
 }
 
-const visualSettings = document.getElementById('visual-settings');
-
-export function toggleVisualSettings(event) {
-  visualSettings.classList.toggle('hidden');
-  event.stopPropagation();
-}
 
 document.addEventListener('click', event => {
-  if (!visualSettings.contains(event.target)) {
-    visualSettings.classList.add('hidden');
+  const settingsBox = document.getElementById('visual-settings');
+  const toggle = document.getElementById('show-visual-settings');
+
+  if (!settingsBox.contains(event.target) && !toggle.parentElement.contains(event.target)) {
+    toggle.checked = false;
   }
 });
 

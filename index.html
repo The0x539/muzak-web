@@ -25,6 +25,11 @@
       .interactive {
         display: none !important;
       }
+      [role="toolbar"]:has(#show-visual-settings) {
+        position: fixed;
+        z-index: 100;
+        inset: auto 1em 0 auto;
+      }
     </style>
   </noscript>
 </head>
@@ -89,12 +94,15 @@
       C3 E3 B♭3 E3 C / / /
     </textarea>
 
-    <div role="toolbar" class="interactive">
-      <button onclick="play(score.value)">▶ Play</button>
-      <button onclick="toggleVisualSettings(event)">🎨 This page is ugly</button>
+    <div role="toolbar">
+      <button onclick="play(score.value)" class="interactive">▶ Play</button>
+      <label class="pseudo-button">
+        🎨 This page is ugly
+        <input type="checkbox" id="show-visual-settings" class="hidden" />
+      </label>
     </div>
 
-    <div role="toolbar" id="visual-settings" class="hidden">
+    <div role="toolbar" id="visual-settings">
       <fieldset role="radiogroup">
         <label>
           <input tabindex="-1" type="radio" id="theme-dark" name="theme" />
