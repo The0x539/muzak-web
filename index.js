@@ -146,6 +146,19 @@ export async function play(score_text) {
   audioElem.play();
 }
 
+const visualSettings = document.getElementById('visual-settings');
+
+export function toggleVisualSettings(event) {
+  visualSettings.classList.toggle('hidden');
+  event.stopPropagation();
+}
+
+document.addEventListener('click', event => {
+  if (!visualSettings.contains(event.target)) {
+    visualSettings.classList.add('hidden');
+  }
+});
+
 // very simple hot reload
 if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
   const socket = new WebSocket("ws://localhost:8001");

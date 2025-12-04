@@ -83,7 +83,33 @@
       C3 G3 B♭3 G3 C3 G3 B♭3 G3
       C3 E3 B♭3 E3 C / / /
     </textarea>
-    <button onclick="play(score.value)">▶ play</button>
+
+    <div role="toolbar">
+      <button onclick="play(score.value)">▶ Play</button>
+      <button onclick="toggleVisualSettings(event)">🎨 This page is ugly</button>
+    </div>
+
+    <div role="toolbar" id="visual-settings" class="hidde">
+      <fieldset role="radiogroup">
+        <label>
+          <input tabindex="-1" type="radio" id="theme-dark" name="theme" />
+          🌙Dark
+        </label>
+        <label>
+          <input type="radio" id="theme-system" name="theme" checked />
+          🪐System
+        </label>
+        <label>
+          <input type="radio" id="theme-light" name="theme" />
+          ☀️Light
+        </label>
+      </fieldset>
+
+      <label>
+        <input type="checkbox" id="lowercase" checked />
+        Lowercase
+      </label>
+    </div>
 
     <section>
       <h2>What is this?</h2>

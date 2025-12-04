@@ -4,11 +4,7 @@
   box-sizing: border-box;
   font-size: 1em;
   font-family: inherit;
-  text-transform: lowercase;
-}
-
-input, textarea, a, code, abbr, samp {
-  text-transform: none;
+  text-transform: inherit;
 }
 
 math {
@@ -19,6 +15,26 @@ math {
   font-family: "Cascadia Code", monospace, sans-serif;
   font-size: 16px;
   color-scheme: light dark;
+
+  &:has(#theme-dark:checked) {
+    color-scheme: only dark;
+  }
+
+  &:has(#theme-light:checked) {
+    color-scheme: only light;
+  }
+
+  &:has(#lowercase:checked) {
+    text-transform: lowercase;
+  }
+}
+
+input, textarea, a, code, abbr, samp, mark, .copy-anim {
+  text-transform: none;
+}
+
+.hidden {
+  display: none !important;
 }
 
 body {
@@ -65,7 +81,6 @@ h2 {
 
 mark {
   cursor: pointer;
-  text-transform: none;
   background: none;
   color: inherit;
   --glow: orchid;
@@ -77,7 +92,6 @@ mark {
 }
 
 .copy-anim {
-  text-transform: none;
   pointer-events: none;
   position: absolute;
 
@@ -242,7 +256,7 @@ footer {
 }
 
 [role="toolbar"] {
-  width: min-content;
+  width: max-content;
 
   display: flex;
   margin-block: 1rem;
@@ -251,5 +265,44 @@ footer {
   input[type="range"] {
     width: min(100%, 200px);
     margin-inline-start: auto;
+  }
+}
+
+[role="radiogroup"] {
+  display: inline-table;
+  border-collapse: collapse;
+  border: none;
+  padding: 0;
+
+  input {
+    opacity: 0;
+    position: absolute;
+  }
+}
+
+#visual-settings {
+  border: 1px solid ButtonBorder;
+  padding: 1em;
+  display: flex;
+  align-items: center;
+
+  label {
+    user-select: none;
+    display: table-cell;
+    border: 1px solid ButtonBorder;
+    padding: 0.5em;
+
+    &:has(:checked) {
+      background: light-dark(#e7e7f7, #334);
+    }
+    &:hover {
+      background: light-dark(#eef, #272734);
+      &:has(input:checked) {
+        background: light-dark(#d6d6ef, #445);
+      }
+    }
+    &:active:active:active {
+      background: light-dark(#cce, #557);
+    }
   }
 }
