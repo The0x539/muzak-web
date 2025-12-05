@@ -68,6 +68,13 @@
       <mark>𝓯</mark>
       <mark>𝓯𝓯</mark>
       &nbsp;
+      <mark>𝅜=</mark>
+      <mark>𝅝=</mark>
+      <mark>𝅗𝅥=</mark>
+      <mark>𝅘𝅥=</mark>
+      <mark>𝅘𝅥𝅮=</mark>
+      <mark>𝅘𝅥𝅯=</mark>
+      &nbsp;
       <mark>🛏️</mark>
     </div>
 
@@ -123,7 +130,7 @@
         Lowercase
       </label>
 
-      <label>
+      <label class="interactive">
         Font:
         <input type="text" id="fontbox" list="fontlist" onclick="addLocalFonts(fontlist)" oninput="updateFont(this.value)" />
         <datalist id="fontlist">
@@ -140,8 +147,8 @@
 
       <p>
         There exists a "guy" known as <a href="https://colonq.computer">LCOLONQ</a>.
-        From that guy, there is a stream.
-        On that stream, there is a redeem: <cite>Bells of Bezelea</cite>.
+        From that guy, there is a livestream.
+        On that livestream, there is a redeem: <cite>Bells of Bezelea</cite>.
         With it, you can submit music to be played on the computer.
         This is how that happens.
       </p>
@@ -219,6 +226,7 @@
               </li>
             </ul>
           </li>
+          <li>Tracks can change tempo mid-score and independently of one another</li>
         </ul>
       </p>
     </section>
@@ -245,6 +253,7 @@
         If command-line output sounds a bit crunchy, try lowering the <mark>--volume</mark>.
         You can increase your system volume to compensate.
         I don't fully understand the nature of this problem; help is welcome.
+        (The default volume is <mark>1.0</mark>. I find <mark>0.3</mark> to be a decent starting point for troubleshooting this issue.)
       </p>
 
       <section>
@@ -366,6 +375,11 @@
             The default is <i>mezzo forte</i> (<mark>𝓶𝓯</mark>), and each step has a gain ratio of <math><msqrt>2</msqrt></math>
             (subject to change if someone has a better idea).
           </p>
+          <small>
+            I know about 𝆏𝆐𝆑 from
+            <a href="https://en.wikipedia.org/wiki/Musical_Symbols_(Unicode_block)">the Musical Symbols Unicode block</a>,
+            and I intend to add support for them, but haven't done so yet.
+          </small>
           <!-- Deep Blue -->
           <code>
             90
@@ -390,6 +404,59 @@
             as a compact way of writing the extended lack of activity.
           </p>
           <code>A 🛏️32 B</code>
+        </section>
+
+        <section>
+          <h4>Comments</h4>
+          <p>
+            Any text inside a pair of <mark>()</mark> will be ignored.
+            Nesting is supported.
+            There is no way to escape a paren so as to have parens inside the text of a comment.
+          </p>
+          <p>
+            Hopefully, Clonk will add code to <cite>wasp</cite> that parses these comments
+            as some kind of S-expression, for the purpose of including attribution metadata
+            (<i>e.g.</i> title, original composer, arrangement author).
+            However, as of the time of writing, we have yet to even decide on a format for this,
+            other than the starting point of this sexpr-compatible comment syntax.
+          </p>
+          <code>C(D(E)F)G</code>
+        </section>
+
+        <section>
+          <h4>Metronome Marks (<i>a.k.a.</i> Tempo Changes)</h4>
+          <p>
+            <mark>𝅘𝅥=</mark>, followed by a number, can change the tempo of a track midway through,
+            similar to a tempo marking in sheet music.
+            In contrast to the simple tempo setting, this is a <em>per-track</em> change (unlike in sheet music).
+          </p>
+          <p>
+            Metronome marks aren't limited to quarter notes; they can use anything from a double note to a sixteenth:
+            <mark>𝅜</mark>
+            <mark>𝅝</mark>
+            <mark>𝅗𝅥</mark>
+            <mark>𝅘𝅥</mark>
+            <mark>𝅘𝅥𝅮</mark>
+            <mark>𝅘𝅥𝅯</mark>.
+            This is mostly useful just for aesthetic purposes or to avoid confusing oneself when translating from sheet music,
+            since using a shorter note is equivalent to just doubling the number.
+          </p>
+          <p>
+            For historical reasons, the simple global tempo setting corresponds to
+            <mark>𝅝=</mark>, not <mark>𝅘𝅥=</mark>.
+          </p>
+          <small>Do <em>you</em> have a better example for this one? Contact me!</small>
+          <code>
+            30
+            🎹
+            cdef
+            𝅗𝅥=70
+            cdef
+            𝅘𝅥=170
+            cdef
+            𝅘𝅥𝅮=400
+            cdef
+          </code>
         </section>
       </section>
 
@@ -531,17 +598,11 @@
               </msup>
             </math>.
             It takes about 4 seconds to become inaudible (and the code explicitly cuts it off at 4 seconds).
-            As such, note duration is basically<sup>*</sup> ignored for this instrument, and notes can overlap.
+            As such, note duration is basically ignored for this instrument, and notes can overlap.
           </p>
           <p>
             This instrument existed in the original muzak.el codebase, but was not exposed for use on stream.
           </p>
-
-          <small>
-            * At the time of writing, there's a bug where short bell notes at the end of a score
-            will be cut off prematurely, because they don't extend the score duration
-            to let them play to completion.
-          </small>
 
           <!-- Return of the Obra Dinn -->
           <code>
