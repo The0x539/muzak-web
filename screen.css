@@ -329,18 +329,29 @@ label:has(input:is([type="radio"], [type="checkbox"])) {
   }
 }
 
+input[type="checkbox"] {
+  width: 0.875em;
+  height: 0.875em;
+}
+
 #visual-settings {
   border: 1px solid ButtonBorder;
   padding: 1em;
   display: flex;
   align-items: center;
+  font-size: clamp(16px, 1em, 80px);
 
-  input[type="text"] {
+  input[type="text"], input[type="number"] {
     background: none;
     border: none;
     outline: none;
     border-bottom: 2px solid ButtonBorder;
-    height: 1rem;
-    font-size: 0.8rem;
+    height: 1em;
+    font-size: 0.8em;
+  }
+
+  input[type="number"] {
+    width: 4em;
+    text-align: end;
   }
 }

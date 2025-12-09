@@ -117,14 +117,23 @@ function makeFontStack(font) {
   }
 }
 
+function getRootStyleRule() {
+  const stylesheet = document.styleSheets[0];
+  return [...stylesheet.cssRules].find(r => r.selectorText === ":root");
+}
+
 export function updateFont(font) {
   font = font.trim();
   if (font === "") font = "Cascadia Code";
+  getRootStyleRule().style.fontFamily = makeFontStack(font);
+}
 
-  const stylesheet = document.styleSheets[0];
-  const rule = [...stylesheet.cssRules].find(r => r.selectorText === ":root");
-  rule.style.fontFamily = makeFontStack(font);
+export function updateFontSize(size) {
+  size = +(size || 16);
+  if (size < 4) size = 4;
+  getRootStyleRule().style.fontSize = size + "px";
 }
 
 updateFont(document.getElementById('fontbox').value);
+updateFontSize(document.getElementById('sizebox').value);
 
