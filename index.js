@@ -140,9 +140,7 @@ updateFontSize(document.getElementById('sizebox').value);
 function anchorify(heading) {
   const link = document.createElement('a');
   link.href = '#' + heading.id;
-  for (const child of [...heading.childNodes]) {
-    link.appendChild(child);
-  }
+  link.replaceChildren(...heading.childNodes);
   heading.appendChild(link);
 }
 
