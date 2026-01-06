@@ -137,3 +137,15 @@ export function updateFontSize(size) {
 updateFont(document.getElementById('fontbox').value);
 updateFontSize(document.getElementById('sizebox').value);
 
+function anchorify(heading) {
+  const link = document.createElement('a');
+  link.href = '#' + heading.id;
+  for (const child of [...heading.childNodes]) {
+    link.appendChild(child);
+  }
+  heading.appendChild(link);
+}
+
+for (const elem of document.querySelectorAll('[id]:is(h2, h3, h4)')) {
+  anchorify(elem);
+}

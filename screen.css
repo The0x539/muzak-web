@@ -15,6 +15,11 @@ math {
   font-family: "Cascadia Code", monospace, sans-serif;
   font-size: 16px;
   color-scheme: light dark;
+  scroll-behavior: smooth;
+
+  --target-border: light-dark(steelblue, moccasin);
+  --target-highlight: color-mix(in srgb, var(--target-border) 40%, transparent);
+  --glow: orchid;
 
   &:has(#theme-dark:checked) {
     color-scheme: only dark;
@@ -30,6 +35,32 @@ math {
 
   &:has(#show-visual-settings:not(:checked)) #visual-settings {
     display: none;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  scroll-margin: 2.5rem;
+
+  > a {
+    text-transform: inherit;
+    text-decoration: none;
+    color: inherit;
+
+    &:hover {
+      text-decoration: underline;
+
+      &::after {
+        content: '#';
+        font-size: max(0.5em, 0.875rem);
+        text-decoration: none;
+        vertical-align: middle;
+        width: 0;
+        position: relative;
+        left: 0.7831em;
+        display: inline-block;
+        box-sizing: border-box;
+      }
+    }
   }
 }
 
@@ -105,7 +136,6 @@ mark {
   cursor: pointer;
   background: none;
   color: inherit;
-  --glow: orchid;
   text-shadow:
     0 0 2px var(--glow),
     0 0 4px var(--glow),
@@ -148,6 +178,11 @@ section:has(> h2:first-child) {
 
   h2 {
     margin-block: 0.5em;
+
+    &:target > a {
+      outline: 2px solid var(--target-highlight);
+      outline-offset: 4px;
+    }
   }
 
   h2 + small {
@@ -157,10 +192,14 @@ section:has(> h2:first-child) {
 }
 
 section:has(> h3:first-child) {
-  border: 1px solid ButtonBorder;
+  border: 2px solid ButtonBorder;
   position: relative;
   padding: 1.5em;
   margin-block: 2em 0;
+
+  &:has(> h3:target) {
+    border-color: var(--target-border);
+  }
 
   h3 {
     font-size: 1.5rem;
@@ -178,6 +217,11 @@ section:has(> h4:first-child) {
 
   flex-wrap: wrap;
   row-gap: 0.5em;
+
+  &:has(> h4:target) {
+    outline: 2px solid var(--target-highlight);
+    outline-offset: 6px;
+  }
   
   h4 {
     font-size: 1.25rem;

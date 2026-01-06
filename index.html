@@ -148,7 +148,7 @@
     </div>
 
     <section>
-      <h2>What is this?</h2>
+      <h2 id="what-is-this">What is this?</h2>
       <small>Oops, that's a wall of text!</small>
 
       <p>
@@ -238,7 +238,7 @@
     </section>
 
     <section>
-      <h2>Usage</h2>
+      <h2 id="usage">Usage</h2>
 
       <p class="interactive">
         All of the examples below are playable and editable!
@@ -263,10 +263,10 @@
       </p>
 
       <section>
-        <h3>Basics</h3>
+        <h3 id="basics">Basics</h3>
 
         <section>
-          <h4>Notes</h4>
+          <h4 id="notes">Notes</h4>
           <p>
             Each letter up to <mark>G</mark> is a note.
             Uppercase for octave 4, lowercase for octave 5.
@@ -276,7 +276,7 @@
         </section>
 
         <section>
-          <h4>Tempo</h4>
+          <h4 id="tempo">Tempo</h4>
           <p>
             A number at the very start of the score specifies the <abbr title="beats per minute">BPM</abbr> of the entire score.
             The default is 75 BPM, and the basic unit is a quarter-beat.
@@ -285,7 +285,7 @@
         </section>
 
         <section>
-          <h4>Octaves</h4>
+          <h4 id="octaves">Octaves</h4>
           <p>
             A number after a note specifies the octave.
             If octave is specified, then uppercase/lowercase is ignored.
@@ -294,7 +294,7 @@
         </section>
 
         <section>
-          <h4>Semitones</h4>
+          <h4 id="semitones">Semitones</h4>
           <p>
             A <mark>♯</mark> or <mark>#</mark> symbol after a note makes a <i>sharp</i>.
             A <mark>♭</mark> symbol makes a <i>flat</i>.
@@ -313,7 +313,7 @@
         </section>
 
         <section>
-          <h4>Longer Notes</h4>
+          <h4 id="long-notes">Longer Notes</h4>
           <p>
             Adding <mark>~</mark> symbols to a note will extend it by one time unit.
           </p>
@@ -322,7 +322,7 @@
         </section>
 
         <section>
-          <h4>Rests</h4>
+          <h4 id="rests">Rests</h4>
           <p>
             A <mark>/</mark> plays no sound for one time unit.
           </p>
@@ -335,7 +335,7 @@
         </section>
 
         <section>
-          <h4>Chords</h4>
+          <h4 id="chords">Chords</h4>
           <p>
             Multiple notes inside a pair of <mark>[]</mark> will play together.
             All notes in a chord will use the duration of the longest member note.
@@ -352,10 +352,10 @@
       </section>
 
       <section>
-        <h3>Advanced Notation</h3>
+        <h3 id="advanced-notation">Advanced Notation</h3>
 
         <section>
-          <h4>Parts (<i>a.k.a.</i> Tracks)</h4>
+          <h4 id="parts">Parts (<i>a.k.a.</i> Tracks)</h4>
           <p>
             The <mark>|</mark> symbol will split a score into multiple <i>parts</i> that all play together.
             Parts share a common tempo, but are otherwise independent.
@@ -373,7 +373,7 @@
         </section>
 
         <section>
-          <h4>Dynamics</h4>
+          <h4 id="dynamics">Dynamics</h4>
           <p>
             A valid combination of the <mark>𝓹</mark>, <mark>𝓶</mark>, and <mark>𝓯</mark> symbols between notes
             changes that part's <a href="https://en.wikipedia.org/wiki/Dynamics_(music)">dynamic</a> from that point onward.
@@ -401,7 +401,7 @@
         </section>
 
         <section>
-          <h4>Long Rests</h4>
+          <h4 id="long-rests">Long Rests</h4>
           <p>
             A <mark>🛏️</mark> or <mark>🛏</mark> symbol (<i>i.e.</i>, <samp>U+1F6CF BED</samp>, with or without <samp>U+FE0F VARIANT SELECTOR</samp>),
             followed by a number, is equivalent to that many <mark>/</mark> symbols.
@@ -413,7 +413,7 @@
         </section>
 
         <section>
-          <h4>Comments</h4>
+          <h4 id="comments">Comments</h4>
           <p>
             Any text inside a pair of <mark>()</mark> will be ignored.
             Nesting is supported.
@@ -430,7 +430,7 @@
         </section>
 
         <section>
-          <h4>Metronome Marks (<i>a.k.a.</i> Tempo Changes)</h4>
+          <h4 id="metronome-marks">Metronome Marks (<i>a.k.a.</i> Tempo Changes)</h4>
           <p>
             <mark>𝅘𝅥=</mark>, followed by a number, can change the tempo of a track midway through,
             similar to a tempo marking in sheet music.
@@ -484,7 +484,7 @@
       </section>
 
       <section>
-        <h3>Instruments</h3>
+        <h3 id="instruments">Instruments</h3>
         <p>
           An instrument symbol at the start of a part will set that part's instrument.
           By default, the first track will use "beep", and all others will use "keys".
@@ -500,7 +500,7 @@
         </p>
 
         <section>
-          <h4><mark>∿</mark>Beep</h4>
+          <h4 id="beep"><mark>∿</mark>Beep</h4>
           <p>
             A pure sine wave with amplitude 0.8 (at <mark>𝓶𝓯</mark>).
           </p>
@@ -535,7 +535,7 @@
         </section>
 
         <section>
-          <h4><mark>🎹</mark>Keys</h4>
+          <h4 id="keys"><mark>🎹</mark>Keys</h4>
           <p>
             A square wave with starting amplitude 0.5 that decays
             <em>linearly</em> to 0.25 over the note's duration.
@@ -607,7 +607,7 @@
         </section>
 
         <section>
-          <h4><mark>🔔</mark>Bells</h4>
+          <h4 id="bells"><mark>🔔</mark>Bells</h4>
           <p>
             A square wave with starting amplitude 0.4 that decays <em>exponentially</em> according to
             <math>
@@ -668,7 +668,7 @@
         </section>
 
         <section>
-          <h4><mark>🌊</mark>Waterphone</h4>
+          <h4 id="waterphone"><mark>🌊</mark>Waterphone</h4>
           <p>
             A triangle wave that is initially silent,
             but ramps <strong>up</strong> linearly to 1.0 over the note's duration.
@@ -731,7 +731,7 @@
         </section>
 
         <section>
-          <h4><mark>🥁</mark>Snare</h4>
+          <h4 id="snare"><mark>🥁</mark>Snare</h4>
           <p>
             White noise with starting amplitude 0.3 that decays linearly to silence over a fixed duration of 0.15 seconds.
             This instrument ignores both pitch and duration,
