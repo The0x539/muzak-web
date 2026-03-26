@@ -17,7 +17,7 @@ for (const code of getElements('code')) {
   code.after(container);
   code.remove();
 
-  button.addEventListener('click', () => play(input.value));
+  button.addEventListener('click', () => play(input.value, button));
 }
 
 function copyText(event) {
@@ -57,12 +57,25 @@ for (const mark of getElements('mark')) {
 
 const audioElem = document.getElementsByTagName('audio')[0];
 
-export async function play(score_text) {
+export async function play(score_text, button) {
+  let rendered = false;
+  if (button) {
+    setTimeout(() => {
+      if (!rendered) {
+        button.innerText = button.innerText.replace('▶ ', '⏳');
+        button.disabled = true;
+      }
+    }, 100);
+  }
   const samples = await render(score_text);
+  rendered = true;
+  if (button) {
+    button.innerText = button.innerText.replace('⏳', '▶ ');
+    button.disabled = false;
+  }
   audioElem.src = URL.createObjectURL(buildWAV(samples, 48000));
   audioElem.play();
 }
-
 
 document.addEventListener('click', event => {
   const settingsBox = document.getElementById('visual-settings');
