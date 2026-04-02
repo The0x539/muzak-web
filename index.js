@@ -56,8 +56,15 @@ for (const mark of getElements('mark')) {
 }
 
 const audioElem = document.getElementsByTagName('audio')[0];
+let lastPlayed = null;
 
 export async function play(score_text, button) {
+  if (score_text === lastPlayed) {
+    audioElem.currentTime = 0;
+    audioElem.play();
+    return;
+  }
+
   let rendered = false;
   if (button) {
     setTimeout(() => {
@@ -75,6 +82,7 @@ export async function play(score_text, button) {
   }
   audioElem.src = URL.createObjectURL(buildWAV(samples, 48000));
   audioElem.play();
+  lastPlayed = score_text;
 }
 
 document.addEventListener('click', event => {
